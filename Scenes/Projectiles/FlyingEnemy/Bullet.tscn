@@ -1,0 +1,62 @@
+[gd_scene load_steps=9 format=3 uid="uid://dqr0ht54r7ul5"]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/rope.gdshader" id="1_8tbvd"]
+[ext_resource type="Script" path="res://Scripts/Enemies/bullet.gd" id="1_hptx3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjjd4"]
+shading_mode = 0
+
+[sub_resource type="BoxMesh" id="BoxMesh_bt61g"]
+material = SubResource("StandardMaterial3D_bjjd4")
+size = Vector3(1.28, 0.25, 0.25)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c4t6q"]
+render_priority = 0
+shader = ExtResource("1_8tbvd")
+shader_parameter/color = Color(0, 0, 1, 1)
+shader_parameter/size = 1.05
+
+[sub_resource type="BoxMesh" id="BoxMesh_rmxnn"]
+material = SubResource("ShaderMaterial_c4t6q")
+size = Vector3(1.28, 0.35, 0.35)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tc6ad"]
+size = Vector3(1.1, 1.1, 2.666)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_44q7e"]
+size = Vector3(0.2, 0.2, 1.33687)
+
+[node name="EnemyBullet" type="RigidBody3D" groups=["Bullet"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.677217)
+collision_layer = 4
+collision_mask = 4
+gravity_scale = 0.0
+script = ExtResource("1_hptx3")
+
+[node name="Main" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, -0.674208)
+mesh = SubResource("BoxMesh_bt61g")
+
+[node name="Outline" type="MeshInstance3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, -0.674208)
+mesh = SubResource("BoxMesh_rmxnn")
+
+[node name="Area3D" type="Area3D" parent="." groups=["Bullet"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.674208)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00399172, 0.0146545, 0.0284179)
+shape = SubResource("BoxShape3D_tc6ad")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0121178, -0.654352)
+shape = SubResource("BoxShape3D_44q7e")
+disabled = true
+
+[node name="DeleteTimer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="DeleteTimer" to="." method="_on_delete_timer_timeout"]

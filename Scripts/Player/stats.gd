@@ -1,0 +1,19 @@
+extends Node3D
+@export var HP: float = 100
+@export var speed: float = 15
+@export var DashVel: float = 75
+@export var AttackDMG: float = 10
+@export var AttackSpeed: float = 0.1
+@export var BulletSize: float = 1
+@export var BulletSpeed: float = 75
+@export var BullerSpread: float = 0
+@export var ChargeSpeed: float = 3
+@export var ChargeDamage: float = 100
+@export var BombDMG: float = 200
+@export var BombCooldown: float = 10
+@export var BallCooldown: float = 5
+@export var BombSize: float = 1
+@export var MeleeSpeed: float = 0.5
+@export var MeleeDamage: float = 60
+@export var MeleeDashCooldown: float = 1.5
+@export var MeleeDashAmount: float = 65

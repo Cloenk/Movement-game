@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://c1yxcurxti54t"
+path="res://.godot/imported/SpikyBall.obj-d9b0176fbac25d46cca007ac6628d7e2.mesh"
+
+[deps]
+
+files=["res://.godot/imported/SpikyBall.obj-d9b0176fbac25d46cca007ac6628d7e2.mesh"]
+
+source_file="res://Assets/3dModels/SpikeBall/SpikyBall.obj"
+dest_files=["res://.godot/imported/SpikyBall.obj-d9b0176fbac25d46cca007ac6628d7e2.mesh", "res://.godot/imported/SpikyBall.obj-d9b0176fbac25d46cca007ac6628d7e2.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

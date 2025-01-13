@@ -1,0 +1,242 @@
+[gd_scene load_steps=11 format=3 uid="uid://bmg7mirq8qyha"]
+
+[ext_resource type="ArrayMesh" uid="uid://c1yxcurxti54t" path="res://Assets/3dModels/SpikeBall/SpikyBall.obj" id="1_tbcea"]
+[ext_resource type="Script" path="res://Scripts/Enemies/SpikeMan/spike_ball.gd" id="1_y4f2n"]
+[ext_resource type="Material" uid="uid://bvh8wiugnvx5v" path="res://Assets/Materials/SpikeBall/Metal.tres" id="2_wnwfw"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_v7kxy"]
+material = ExtResource("2_wnwfw")
+top_radius = 0.1
+bottom_radius = 0.2
+height = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_08jk6"]
+material = ExtResource("2_wnwfw")
+top_radius = 0.2
+bottom_radius = 0.2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fp6ib"]
+radius = 1.45415
+height = 5.07506
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j1grh"]
+radius = 1.92208
+height = 4.43038
+
+[sub_resource type="Animation" id="Animation_yyal0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meshes/RightLeg/Up:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.112067)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes/RightLeg/Down:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(5.77436e-10, -7.42817e-09, 0.0775799)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Meshes/RightLeg/Down:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.727099, 0.602923)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Meshes/LeftLeg/Up:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -0.112067)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Meshes/LeftLeg/Down:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.0775799)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Meshes/LeftLeg/Down:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, -0.727099, 0.602923)]
+}
+
+[sub_resource type="Animation" id="Animation_kechb"]
+resource_name = "Walk"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Meshes/RightLeg/Up:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.112067), Vector3(-0.0513671, 0.0109041, -0.530328), Vector3(-0.0687599, 0.02035, -0.687359), Vector3(-0.0513671, 0.0109041, -0.530328), Vector3(0, 0, -0.112067), Vector3(0.0470569, 0.00908093, 0.269135), Vector3(0.0715055, 0.0221864, 0.48943), Vector3(0.0470569, 0.00908093, 0.269135), Vector3(0, 0, -0.112067)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Meshes/RightLeg/Down:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(5.77436e-10, -7.42817e-09, 0.0775799), Vector3(5.77436e-10, -7.42817e-09, 0.0775799), Vector3(0.0427338, 0.00743775, 0.422174), Vector3(0.0706229, 0.0215847, 0.670602), Vector3(0.0427338, 0.00743775, 0.422174), Vector3(5.77436e-10, -7.42817e-09, 0.0775799)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Meshes/RightLeg/Down:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.0999711, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.00925267, -0.727099, 0.604094), Vector3(-0.294737, -0.727099, 0.64023), Vector3(-0.411714, -0.485848, 0.655037), Vector3(-0.294737, -0.727099, 0.64023), Vector3(-0.00925267, -0.727099, 0.604094), Vector3(0.591896, -0.609943, 0.528002), Vector3(0.941437, -0.445817, 0.483758), Vector3(0.591896, -0.609943, 0.528002), Vector3(-0.00925267, -0.727099, 0.604094)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Meshes/LeftLeg/Up:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, -0.112067), Vector3(0.0470569, 0.00908093, 0.269135), Vector3(0.0715055, 0.0221864, 0.48943), Vector3(0.0470569, 0.00908093, 0.269135), Vector3(0, 0, -0.112067), Vector3(-0.0513671, 0.0109041, -0.530328), Vector3(-0.0687599, 0.02035, -0.687359), Vector3(-0.0513671, 0.0109041, -0.530328), Vector3(0, 0, -0.112067)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Meshes/LeftLeg/Down:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(5.77436e-10, -7.42817e-09, 0.0775799), Vector3(0.0427338, 0.00743775, 0.422174), Vector3(0.0706229, 0.0215847, 0.670602), Vector3(0.0427338, 0.00743775, 0.422174), Vector3(5.77436e-10, -7.42817e-09, 0.0775799), Vector3(0, 0, 0.0775799), Vector3(0, 0, 0.0775799), Vector3(0, 0, 0.0775799), Vector3(-0.0232473, -0.00144015, 0.0116692)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Meshes/LeftLeg/Down:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, -0.727099, 0.602923), Vector3(0.624371, -0.635208, 0.530478), Vector3(0.93399, -0.445375, 0.482197), Vector3(0.589442, -0.631473, 0.514142), Vector3(0.0146264, -0.650598, 0.604753), Vector3(-0.289942, -0.626367, 0.649824), Vector3(-0.357148, -0.501799, 0.66313), Vector3(-0.288558, -0.614449, 0.64065), Vector3(-0.0570417, -0.727099, 0.592177)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v3ao3"]
+_data = {
+"RESET": SubResource("Animation_yyal0"),
+"Walk": SubResource("Animation_kechb")
+}
+
+[node name="SpikeBall" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_y4f2n")
+
+[node name="Meshes" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.44988, 0)
+
+[node name="RightLeg" type="Node3D" parent="Meshes"]
+transform = Transform3D(0.992084, 0, -0.125576, 0, 1, 0, 0.125576, 0, 0.992084, -6.43377e-09, -2.22654, -1.17401)
+
+[node name="Up" type="MeshInstance3D" parent="Meshes/RightLeg"]
+transform = Transform3D(0.993727, 0.111833, 0, -0.111833, 0.993727, 0, 0, 0, 1, 0, 0.964486, 0.602923)
+mesh = SubResource("CylinderMesh_v7kxy")
+
+[node name="Down" type="MeshInstance3D" parent="Meshes/RightLeg"]
+transform = Transform3D(0.996992, -0.0775021, -7.42817e-09, 0.0775021, 0.996992, -5.77436e-10, 7.45058e-09, 3.88578e-16, 1, 0, -0.727099, 0.602923)
+mesh = SubResource("CylinderMesh_08jk6")
+
+[node name="LeftLeg" type="Node3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2.22654, -0.0189118)
+
+[node name="Up" type="MeshInstance3D" parent="Meshes/LeftLeg"]
+transform = Transform3D(0.993727, 0.111833, 0, -0.111833, 0.993727, 0, 0, 0, 1, 0, 0.964486, 0.602923)
+mesh = SubResource("CylinderMesh_v7kxy")
+
+[node name="Down" type="MeshInstance3D" parent="Meshes/LeftLeg"]
+transform = Transform3D(0.996992, -0.0775021, 0, 0.0775021, 0.996992, 0, 0, 0, 1, 0, -0.727099, 0.602923)
+mesh = SubResource("CylinderMesh_08jk6")
+
+[node name="Head" type="MeshInstance3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45913, 0)
+mesh = ExtResource("1_tbcea")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("2_wnwfw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fp6ib")
+
+[node name="SpikeArea" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84881, 0)
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SpikeArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.237933, 0)
+shape = SubResource("CapsuleShape3D_j1grh")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_v3ao3")
+}
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

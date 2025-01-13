@@ -1,0 +1,158 @@
+[gd_scene load_steps=13 format=3 uid="uid://d65x6rrt71di"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/flying_enemy.gd" id="1_xdok6"]
+[ext_resource type="ArrayMesh" uid="uid://bh4i5ug36np55" path="res://Assets/3dModels/SquidMan/head.obj" id="2_trmep"]
+[ext_resource type="ArrayMesh" uid="uid://bdfcgqihfb035" path="res://Assets/3dModels/SquidMan/Torso.obj" id="3_h0fgp"]
+[ext_resource type="Material" uid="uid://qxat8txol5oq" path="res://Assets/Materials/SquidMan/SquidTentacle.tres" id="4_j5ttw"]
+[ext_resource type="ArrayMesh" uid="uid://cuo5j2ndxamve" path="res://Assets/3dModels/SquidMan/RightArm.obj" id="4_pvdwa"]
+[ext_resource type="Material" uid="uid://8qkbflvvghm7" path="res://Assets/Materials/SquidMan/SquidBody.tres" id="4_skfye"]
+[ext_resource type="ArrayMesh" uid="uid://bufkf3ottwbkd" path="res://Assets/3dModels/SquidMan/LeftArm.obj" id="5_hks0a"]
+[ext_resource type="ArrayMesh" uid="uid://dseoq0gqofiuw" path="res://Assets/3dModels/SquidMan/RightLeg.obj" id="6_prj7g"]
+[ext_resource type="Texture2D" uid="uid://sm1qtb5t2ns8" path="res://Assets/Textures/Star.png" id="6_ybgua"]
+[ext_resource type="ArrayMesh" uid="uid://dfulyeycuswgu" path="res://Assets/3dModels/SquidMan/LeftLeg.obj" id="7_hokfy"]
+[ext_resource type="Texture2D" uid="uid://c7xhr2nb7860d" path="res://Assets/Textures/jell_man (yippie).png" id="11_qen5j"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_qdvfy"]
+radius = 1.32097
+height = 7.9008
+
+[node name="FlyingEnemy" type="CharacterBody3D" groups=["Enemy"]]
+collision_layer = 9
+collision_mask = 9
+script = ExtResource("1_xdok6")
+
+[node name="Meshes" type="Node3D" parent="."]
+transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
+
+[node name="Head" type="Node3D" parent="Meshes"]
+transform = Transform3D(1, -1.74846e-07, 0, 1.74846e-07, 1, 0, 0, 0, 1, 0, 1.99011, 0)
+
+[node name="Head" type="MeshInstance3D" parent="Meshes/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.84217e-14, -1.99937, 0)
+mesh = ExtResource("2_trmep")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_skfye")
+surface_material_override/1 = ExtResource("4_skfye")
+surface_material_override/2 = ExtResource("4_j5ttw")
+surface_material_override/3 = ExtResource("4_j5ttw")
+surface_material_override/4 = ExtResource("4_j5ttw")
+surface_material_override/5 = ExtResource("4_j5ttw")
+surface_material_override/6 = ExtResource("4_j5ttw")
+surface_material_override/7 = ExtResource("4_j5ttw")
+surface_material_override/8 = ExtResource("4_j5ttw")
+surface_material_override/9 = ExtResource("4_j5ttw")
+surface_material_override/10 = ExtResource("4_j5ttw")
+surface_material_override/11 = ExtResource("4_j5ttw")
+surface_material_override/12 = ExtResource("4_j5ttw")
+surface_material_override/13 = ExtResource("4_j5ttw")
+surface_material_override/14 = ExtResource("4_j5ttw")
+surface_material_override/15 = ExtResource("4_j5ttw")
+surface_material_override/16 = ExtResource("4_j5ttw")
+surface_material_override/17 = ExtResource("4_j5ttw")
+surface_material_override/18 = ExtResource("4_j5ttw")
+surface_material_override/19 = ExtResource("4_j5ttw")
+surface_material_override/20 = ExtResource("4_j5ttw")
+surface_material_override/21 = ExtResource("4_j5ttw")
+surface_material_override/22 = ExtResource("4_j5ttw")
+surface_material_override/23 = ExtResource("4_j5ttw")
+surface_material_override/24 = ExtResource("4_j5ttw")
+surface_material_override/25 = ExtResource("4_j5ttw")
+surface_material_override/26 = ExtResource("4_j5ttw")
+surface_material_override/27 = ExtResource("4_j5ttw")
+surface_material_override/28 = ExtResource("4_j5ttw")
+surface_material_override/29 = ExtResource("4_j5ttw")
+surface_material_override/30 = ExtResource("4_j5ttw")
+surface_material_override/31 = ExtResource("4_j5ttw")
+surface_material_override/32 = ExtResource("4_j5ttw")
+surface_material_override/33 = ExtResource("4_j5ttw")
+surface_material_override/34 = ExtResource("4_j5ttw")
+surface_material_override/35 = ExtResource("4_j5ttw")
+surface_material_override/36 = ExtResource("4_j5ttw")
+
+[node name="Torso" type="MeshInstance3D" parent="Meshes"]
+mesh = ExtResource("3_h0fgp")
+surface_material_override/0 = ExtResource("4_skfye")
+surface_material_override/1 = ExtResource("4_skfye")
+
+[node name="Star" type="Sprite3D" parent="Meshes/Torso"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.127964, 1.58666, -0.011125)
+modulate = Color(0.581033, 0.581033, 0.581033, 1)
+texture_filter = 0
+texture = ExtResource("6_ybgua")
+
+[node name="LeftArm" type="Node3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 0.951594, -0.307357, 0, 0.307357, 0.951594, 1.0966e-08, 1.8319, -0.250873)
+visible = false
+
+[node name="LeftArm" type="MeshInstance3D" parent="Meshes/LeftArm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.70683e-09, -1.82685, 0.222066)
+mesh = ExtResource("5_hks0a")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_skfye")
+surface_material_override/1 = ExtResource("4_skfye")
+
+[node name="RightArm" type="Node3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 0.91496, 0.403545, 0, -0.403545, 0.91496, -1.08876e-08, 1.83845, 0.24908)
+visible = false
+
+[node name="RightArm" type="MeshInstance3D" parent="Meshes/RightArm"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02602e-08, -1.82357, -0.234726)
+mesh = ExtResource("4_pvdwa")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("4_skfye")
+surface_material_override/1 = ExtResource("4_skfye")
+
+[node name="LeftLeg" type="Node3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 0.968148, 0.25038, 0, -0.25038, 0.968148, -8.53106e-09, 0.693295, 0.195168)
+
+[node name="LeftLeg" type="MeshInstance3D" parent="Meshes/LeftLeg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.52045e-09, -0.773811, -0.149171)
+mesh = ExtResource("6_prj7g")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_skfye")
+surface_material_override/1 = ExtResource("4_skfye")
+
+[node name="RightLeg" type="Node3D" parent="Meshes"]
+transform = Transform3D(1, 0, 0, 0, 0.951594, -0.307357, 0, 0.307357, 0.951594, 1.0411e-08, 0.735803, -0.238177)
+
+[node name="RighLeg" type="MeshInstance3D" parent="Meshes/RightLeg"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.59861e-09, -0.855841, 0.196713)
+mesh = ExtResource("7_hokfy")
+skeleton = NodePath("../..")
+surface_material_override/0 = ExtResource("4_skfye")
+surface_material_override/1 = ExtResource("4_skfye")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.328889, 0)
+shape = SubResource("CapsuleShape3D_qdvfy")
+
+[node name="BulletStartPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.12144, 0)
+
+[node name="ShootTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="DodgeTimer" type="Timer" parent="."]
+wait_time = 5.0
+
+[node name="RightRay" type="RayCast3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, -2, 0)
+
+[node name="RightMark" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.24292, 0, 0)
+
+[node name="LeftRay" type="RayCast3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+target_position = Vector3(0, -2, 0)
+
+[node name="LeftMark" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24255, 0, 0)
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(0.255, 0, 0, 0, 0.255, 0, 0, 0, 0.255, 0, 1.72703, -1.28743)
+visible = false
+texture = ExtResource("11_qen5j")
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]

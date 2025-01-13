@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dseoq0gqofiuw"
+path="res://.godot/imported/RightLeg.obj-c17e4f86254ae54de25495c7beb3a95b.mesh"
+
+[deps]
+
+files=["res://.godot/imported/RightLeg.obj-c17e4f86254ae54de25495c7beb3a95b.mesh"]
+
+source_file="res://Assets/3dModels/SquidMan/RightLeg.obj"
+dest_files=["res://.godot/imported/RightLeg.obj-c17e4f86254ae54de25495c7beb3a95b.mesh", "res://.godot/imported/RightLeg.obj-c17e4f86254ae54de25495c7beb3a95b.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

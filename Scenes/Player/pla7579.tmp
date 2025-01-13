@@ -1,0 +1,115 @@
+[gd_scene load_steps=12 format=3 uid="uid://dmwv25fu0o4fw"]
+
+[ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_gy4rw"]
+[ext_resource type="Script" path="res://Scripts/Player/stats.gd" id="1_ivf41"]
+[ext_resource type="Script" path="res://Scripts/Player/PlayerShooting.gd" id="3_1vghd"]
+[ext_resource type="PackedScene" uid="uid://cy2sq2hpoi036" path="res://Scenes/Player/rope.tscn" id="3_dr7dj"]
+[ext_resource type="Shader" path="res://Assets/Shaders/VHS.gdshader" id="4_6y0ai"]
+[ext_resource type="Texture2D" uid="uid://be7vhrp45g3ew" path="res://Assets/Textures/Weapons/HandIdle.png" id="5_hmdxp"]
+[ext_resource type="Texture2D" uid="uid://bcxt4yksxdh5f" path="res://Assets/Textures/Weapons/HandPoint.png" id="6_e215i"]
+[ext_resource type="Texture2D" uid="uid://bqdxk5ysu6eiv" path="res://Assets/Textures/crosshair.png" id="8_laitr"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2nbw2"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_0xrd5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6fbld"]
+shader = ExtResource("4_6y0ai")
+shader_parameter/shake = 0.015
+shader_parameter/noiseQuality = 250.0
+shader_parameter/noiseIntensity = 0.001
+shader_parameter/offsetIntensity = 0.0045
+shader_parameter/colorOffsetIntensity = 0.2
+shader_parameter/pixelSize = 450.0
+shader_parameter/grainIntensity = 0.04
+shader_parameter/use_overlay = true
+shader_parameter/use_lens_distortion = true
+shader_parameter/overlay_color = Color(1, 1, 1, 10)
+shader_parameter/lens_distortion_strength = 0.0
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_gy4rw")
+
+[node name="Stats" type="Node3D" parent="."]
+script = ExtResource("1_ivf41")
+speed = 15.0
+AttackDMG = 10.0
+AttackSpeed = 0.5
+BulletSize = 1.0
+BulletSpeed = 10.0
+
+[node name="Shooting" type="Node3D" parent="."]
+script = ExtResource("3_1vghd")
+
+[node name="ShootingTimer" type="Timer" parent="Shooting"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_2nbw2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_0xrd5")
+
+[node name="GroundCheck" type="RayCast3D" parent="."]
+target_position = Vector3(0, -1.2, 0)
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.476265, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Head"]
+
+[node name="ForwardWallCast" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.364573, 0)
+target_position = Vector3(0, 0, -0.75)
+
+[node name="BackwardsWallCast" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.364573, 0)
+target_position = Vector3(0, 0, 0.75)
+
+[node name="GrappleRaycast" type="RayCast3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.495963)
+target_position = Vector3(0, 0, -60)
+
+[node name="ShootingRayCast" type="RayCast3D" parent="Head"]
+target_position = Vector3(0, 0, -500)
+
+[node name="ShootingRayCastEnd" type="Marker3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -200)
+
+[node name="Rope" parent="Head" instance=ExtResource("3_dr7dj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.435638, -0.620499, -0.352578)
+
+[node name="ColorRect" type="ColorRect" parent="Head"]
+material = SubResource("ShaderMaterial_6fbld")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hand" type="Sprite3D" parent="Head"]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, 0.565, -0.135, -0.776)
+texture = ExtResource("5_hmdxp")
+
+[node name="ShootingStart" type="Marker3D" parent="Head/Hand"]
+transform = Transform3D(7.14286, 0, 0, 0, 7.14286, 0, 0, 0, 7.14286, 1.01643, -1.22082, -0.97482)
+
+[node name="SecondHand" type="Sprite3D" parent="Head"]
+transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, -0.644311, -0.135, -0.776)
+visible = false
+texture = ExtResource("6_e215i")
+
+[node name="Crosshair" type="Sprite2D" parent="Head"]
+position = Vector2(960, 540)
+scale = Vector2(2, 2)
+texture = ExtResource("8_laitr")
+
+[node name="DashTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="IsDashingTimer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="Shooting/ShootingTimer" to="Shooting" method="_on_shooting_timer_timeout"]
+[connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
+[connection signal="timeout" from="IsDashingTimer" to="." method="_on_is_dashing_timer_timeout"]
