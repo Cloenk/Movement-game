@@ -69,13 +69,6 @@ func shoot():
 	bul.dmg = damage
 	get_parent().add_child(bul)
 
-func Damage(dmg):
-	hp -= dmg
-	var particle = DMGParticles.instantiate()
-	particle.global_position = $BulletStartPos.global_position
-	particle.amount += dmg / 2
-	get_parent().add_child(particle)
-
 func _on_timer_timeout():
 	if distance <= 50:
 		shoot()

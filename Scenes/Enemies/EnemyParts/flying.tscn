@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1j1pwjhxv8xv"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Parts/flying.gd" id="1_swojj"]
+
+[node name="Flying" type="Node"]
+script = ExtResource("1_swojj")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://dqr0ht54r7ul5"]
 
 [ext_resource type="Shader" path="res://Assets/Shaders/rope.gdshader" id="1_8tbvd"]
-[ext_resource type="Script" path="res://Scripts/Enemies/bullet.gd" id="1_hptx3"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Squid/bullet.gd" id="1_hptx3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bjjd4"]
 shading_mode = 0

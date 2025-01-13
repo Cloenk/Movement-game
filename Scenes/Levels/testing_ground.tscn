@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://y0gmok2r2kwr"]
+[gd_scene load_steps=9 format=3 uid="uid://y0gmok2r2kwr"]
 
 [ext_resource type="PackedScene" uid="uid://dmwv25fu0o4fw" path="res://Scenes/Player/player.tscn" id="2_5jnxf"]
 [ext_resource type="Material" uid="uid://d2gx13i48rxff" path="res://Assets/Materials/Grass.tres" id="2_k1u55"]
+[ext_resource type="PackedScene" uid="uid://d65x6rrt71di" path="res://Scenes/Enemies/FlyingEnemy/flying_enemy.tscn" id="3_bkg18"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4jsqd"]
 sky_top_color = Color(0.558093, 0.315328, 0.73702, 1)
@@ -224,3 +225,6 @@ collision_layer = 5
 collision_mask = 5
 size = Vector3(22.1841, 8.9834, 1.1499)
 material = ExtResource("2_k1u55")
+
+[node name="FlyingEnemy" parent="." instance=ExtResource("3_bkg18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.11171, -17.5405)

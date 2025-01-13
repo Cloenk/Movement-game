@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://pamofwrwvi8m"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Squid/movement.gd" id="1_7xqek"]
+
+[node name="SquidMovement" type="Node" node_paths=PackedStringArray("host")]
+script = ExtResource("1_7xqek")
+host = NodePath("")
+speed = 15.0

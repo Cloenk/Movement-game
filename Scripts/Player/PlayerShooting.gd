@@ -41,10 +41,10 @@ func _process(delta):
 	if $"../Head/SlashArea".is_monitoring():
 		for body in $"../Head/SlashArea".get_overlapping_bodies():
 			if body.is_in_group("Enemy"):
-				body.Damage(stats.MeleeDamage)
+				body.DamageNode.Damage(stats.MeleeDamage)
 				$"../Head/SlashArea".set_monitoring(false)
 			if body.is_in_group("Ball"):
-				body.linear_velocity = shooting_start.global_transform.basis.z * -1 * 50
+				body.linear_velocity = shooting_start.global_transform.basis.z * -1 * 75
 				body.boost += 25
 	
 	if Input.is_action_just_pressed("Weapon one"):
@@ -198,7 +198,7 @@ func ShootLaser():
 		var collider = $"../Head/ShootingRayCast".get_collider()
 		laser.createBeam()
 		if collider.is_in_group("Enemy"):
-			collider.Damage(stats.ChargeDamage)
+			collider.DamageNode.Damage(stats.ChargeDamage)
 		if collider.is_in_group("Ball"):
 			collider.explode(1.5, 175, 10)
 	else:

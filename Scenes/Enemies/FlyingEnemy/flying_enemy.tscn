@@ -1,11 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://d65x6rrt71di"]
+[gd_scene load_steps=16 format=3 uid="uid://d65x6rrt71di"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/flying_enemy.gd" id="1_xdok6"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_aynjf"]
+[ext_resource type="PackedScene" uid="uid://ivtbot3drsvk" path="res://Scenes/Enemies/EnemyParts/damage.tscn" id="2_6ywo1"]
 [ext_resource type="ArrayMesh" uid="uid://bh4i5ug36np55" path="res://Assets/3dModels/SquidMan/head.obj" id="2_trmep"]
+[ext_resource type="PackedScene" uid="uid://wh7xwiibub25" path="res://Scenes/Enemies/EnemyParts/shooting.tscn" id="3_erauh"]
 [ext_resource type="ArrayMesh" uid="uid://bdfcgqihfb035" path="res://Assets/3dModels/SquidMan/Torso.obj" id="3_h0fgp"]
 [ext_resource type="Material" uid="uid://qxat8txol5oq" path="res://Assets/Materials/SquidMan/SquidTentacle.tres" id="4_j5ttw"]
 [ext_resource type="ArrayMesh" uid="uid://cuo5j2ndxamve" path="res://Assets/3dModels/SquidMan/RightArm.obj" id="4_pvdwa"]
 [ext_resource type="Material" uid="uid://8qkbflvvghm7" path="res://Assets/Materials/SquidMan/SquidBody.tres" id="4_skfye"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Squid/movement.gd" id="4_tmuwo"]
 [ext_resource type="ArrayMesh" uid="uid://bufkf3ottwbkd" path="res://Assets/3dModels/SquidMan/LeftArm.obj" id="5_hks0a"]
 [ext_resource type="ArrayMesh" uid="uid://dseoq0gqofiuw" path="res://Assets/3dModels/SquidMan/RightLeg.obj" id="6_prj7g"]
 [ext_resource type="Texture2D" uid="uid://sm1qtb5t2ns8" path="res://Assets/Textures/Star.png" id="6_ybgua"]
@@ -16,10 +19,29 @@
 radius = 1.32097
 height = 7.9008
 
-[node name="FlyingEnemy" type="CharacterBody3D" groups=["Enemy"]]
+[node name="FlyingEnemy" type="CharacterBody3D" node_paths=PackedStringArray("DamageNode") groups=["Enemy"]]
 collision_layer = 9
 collision_mask = 9
-script = ExtResource("1_xdok6")
+script = ExtResource("1_aynjf")
+DamageNode = NodePath("Damage")
+
+[node name="Damage" parent="." node_paths=PackedStringArray("host") instance=ExtResource("2_6ywo1")]
+host = NodePath("..")
+hp = 100.0
+
+[node name="Shooting" parent="." node_paths=PackedStringArray("host", "BulletStartPosNode") instance=ExtResource("3_erauh")]
+host = NodePath("..")
+BulletStartPosNode = NodePath("../BulletStartPos")
+Cooldown = 1.0
+Damage = 10.0
+BulletVelocity = 60.0
+ShootingRange = 50.0
+LookAtTarget = true
+
+[node name="SquidMovement" type="Node" parent="." node_paths=PackedStringArray("host")]
+script = ExtResource("4_tmuwo")
+host = NodePath("..")
+speed = 15.0
 
 [node name="Meshes" type="Node3D" parent="."]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
@@ -103,7 +125,7 @@ surface_material_override/0 = ExtResource("4_skfye")
 surface_material_override/1 = ExtResource("4_skfye")
 
 [node name="LeftLeg" type="Node3D" parent="Meshes"]
-transform = Transform3D(1, 0, 0, 0, 0.968148, 0.25038, 0, -0.25038, 0.968148, -8.53106e-09, 0.693295, 0.195168)
+transform = Transform3D(1, -1.35879e-08, -1.3123e-09, 1.34836e-08, 0.99817, -0.0604738, 2.13161e-09, 0.0604738, 0.99817, -8.53106e-09, 0.693295, 0.195168)
 
 [node name="LeftLeg" type="MeshInstance3D" parent="Meshes/LeftLeg"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.52045e-09, -0.773811, -0.149171)
@@ -113,7 +135,7 @@ surface_material_override/0 = ExtResource("4_skfye")
 surface_material_override/1 = ExtResource("4_skfye")
 
 [node name="RightLeg" type="Node3D" parent="Meshes"]
-transform = Transform3D(1, 0, 0, 0, 0.951594, -0.307357, 0, 0.307357, 0.951594, 1.0411e-08, 0.735803, -0.238177)
+transform = Transform3D(1, 1.29628e-08, -2.11333e-09, -1.29848e-08, 0.999941, -0.0108038, 1.97316e-09, 0.0108038, 0.999941, 1.0411e-08, 0.735803, -0.238177)
 
 [node name="RighLeg" type="MeshInstance3D" parent="Meshes/RightLeg"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.59861e-09, -0.855841, 0.196713)
@@ -134,6 +156,7 @@ autostart = true
 
 [node name="DodgeTimer" type="Timer" parent="."]
 wait_time = 5.0
+autostart = true
 
 [node name="RightRay" type="RayCast3D" parent="."]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
@@ -155,4 +178,4 @@ visible = false
 texture = ExtResource("11_qen5j")
 
 [connection signal="timeout" from="ShootTimer" to="." method="_on_timer_timeout"]
-[connection signal="timeout" from="DodgeTimer" to="." method="_on_dodge_timer_timeout"]
+[connection signal="timeout" from="DodgeTimer" to="SquidMovement" method="_on_dodge_timer_timeout"]

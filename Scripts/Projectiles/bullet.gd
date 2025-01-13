@@ -12,7 +12,7 @@ func _ready():
 func _process(delta):
 	for body in $EnemyArea.get_overlapping_bodies():
 		if body.is_in_group("Enemy"):
-			body.Damage(damage)
+			body.DamageNode.Damage(damage)
 			queue_free()
 		if body.is_in_group("Ball"):
 			body.explode(1,150, 0)

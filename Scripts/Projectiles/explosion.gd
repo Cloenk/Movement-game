@@ -26,7 +26,7 @@ func push_away_objects():
 		if body.is_in_group("Player"):
 			body.ExplosionVelocity += explosion_vec * explosion_force
 		if body.is_in_group("Enemy"):
-			body.Damage(Damage)
+			body.DamageNode.Damage(Damage)
 
 func delete():
 	queue_free()

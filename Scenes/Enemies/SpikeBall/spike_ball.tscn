@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bmg7mirq8qyha"]
+[gd_scene load_steps=12 format=3 uid="uid://bmg7mirq8qyha"]
 
+[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_4gs4w"]
 [ext_resource type="ArrayMesh" uid="uid://c1yxcurxti54t" path="res://Assets/3dModels/SpikeBall/SpikyBall.obj" id="1_tbcea"]
-[ext_resource type="Script" path="res://Scripts/Enemies/SpikeMan/spike_ball.gd" id="1_y4f2n"]
+[ext_resource type="PackedScene" uid="uid://ivtbot3drsvk" path="res://Scenes/Enemies/EnemyParts/damage.tscn" id="2_bjk2l"]
 [ext_resource type="Material" uid="uid://bvh8wiugnvx5v" path="res://Assets/Materials/SpikeBall/Metal.tres" id="2_wnwfw"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_v7kxy"]
@@ -181,10 +182,15 @@ _data = {
 "Walk": SubResource("Animation_kechb")
 }
 
-[node name="SpikeBall" type="CharacterBody3D" groups=["Enemy"]]
+[node name="SpikeBall" type="CharacterBody3D" node_paths=PackedStringArray("DamageNode") groups=["Enemy"]]
 collision_layer = 9
 collision_mask = 9
-script = ExtResource("1_y4f2n")
+script = ExtResource("1_4gs4w")
+DamageNode = NodePath("Damage")
+
+[node name="Damage" parent="." node_paths=PackedStringArray("host") instance=ExtResource("2_bjk2l")]
+host = NodePath("..")
+hp = 150.0
 
 [node name="Meshes" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.44988, 0)
