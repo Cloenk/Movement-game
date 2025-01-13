@@ -41,7 +41,7 @@ project/assembly_name="Epic movement"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/console/plugin.cfg", "res://addons/func_godot/plugin.cfg")
+enabled=PackedStringArray("res://addons/console/plugin.cfg")
 
 [file_customization]
 
