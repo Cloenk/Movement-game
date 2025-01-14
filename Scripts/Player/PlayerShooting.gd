@@ -44,7 +44,7 @@ func _process(delta):
 				body.DamageNode.Damage(stats.MeleeDamage)
 				$"../Head/SlashArea".set_monitoring(false)
 			if body.is_in_group("Ball"):
-				body.linear_velocity = shooting_start.global_transform.basis.z * -1 * 75
+				body.linear_velocity = shooting_start.global_transform.basis.z * -1 * 50
 				body.boost += 25
 	
 	if Input.is_action_just_pressed("Weapon one"):
