@@ -7,7 +7,8 @@ var FlyingVelocity = Vector3()
 @export var speed: float
 
 var state
-var distance
+var distance = 1
+var readyS = false
 
 func _physics_process(delta):
 	distance = host.global_transform.origin.distance_to(host.target.global_position)

@@ -12,7 +12,7 @@ extends Node
 @onready var timer = $Timer
 
 var CanFire = true
-var distance
+var distance = 1
 
 func _process(delta):
 	distance = host.global_transform.origin.distance_to(host.target.global_position)

@@ -3,12 +3,13 @@ extends RigidBody3D
 @onready var ExplosionScene: PackedScene = preload("res://Scenes/Projectiles/explosion.tscn")
 var grace = true
 var boost = 0
+var lerpspeed = 3
 
 func _ready():
 	$AnimationPlayer.play("decay")
 
 func _process(delta):
-	linear_velocity = lerp(linear_velocity, Vector3.ZERO, 0.005)
+	linear_velocity = lerp(linear_velocity, Vector3.ZERO, (lerpspeed * delta))
 	for body in $Ball.get_overlapping_bodies():
 		if body.is_in_group("Enemy"):
 			explode(1, 150 + boost, 0)
