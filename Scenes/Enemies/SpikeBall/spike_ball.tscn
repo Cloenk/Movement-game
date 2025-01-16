@@ -1,9 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://bmg7mirq8qyha"]
+[gd_scene load_steps=16 format=3 uid="uid://bmg7mirq8qyha"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_4gs4w"]
 [ext_resource type="ArrayMesh" uid="uid://c1yxcurxti54t" path="res://Assets/3dModels/SpikeBall/SpikyBall.obj" id="1_tbcea"]
 [ext_resource type="PackedScene" uid="uid://ivtbot3drsvk" path="res://Scenes/Enemies/EnemyParts/damage.tscn" id="2_bjk2l"]
 [ext_resource type="Material" uid="uid://bvh8wiugnvx5v" path="res://Assets/Materials/SpikeBall/Metal.tres" id="2_wnwfw"]
+[ext_resource type="PackedScene" uid="uid://dmnnfhrrno7gh" path="res://Scenes/Enemies/SpikeBall/Spike_Particles.tscn" id="3_fx1ut"]
+[ext_resource type="PackedScene" uid="uid://jdhfkh0gsf8u" path="res://Scenes/Enemies/EnemyParts/pathfinding.tscn" id="3_nd4ou"]
+[ext_resource type="PackedScene" uid="uid://bx5q7y3tbklyq" path="res://Scenes/Enemies/EnemyParts/damage_area.tscn" id="4_f64r4"]
+[ext_resource type="Script" path="res://Scripts/Enemies/SpikeMan/animations.gd" id="5_xsivy"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_v7kxy"]
 material = ExtResource("2_wnwfw")
@@ -188,12 +192,30 @@ collision_mask = 9
 script = ExtResource("1_4gs4w")
 DamageNode = NodePath("Damage")
 
-[node name="Damage" parent="." node_paths=PackedStringArray("host") instance=ExtResource("2_bjk2l")]
+[node name="Damage" parent="." node_paths=PackedStringArray("ParticlePos", "host") instance=ExtResource("2_bjk2l")]
+ParticleScene = ExtResource("3_fx1ut")
+ParticlePos = NodePath("../ParticleStartPos")
 host = NodePath("..")
 hp = 150.0
 
+[node name="Pathfinding" parent="." node_paths=PackedStringArray("host", "NavAgent") instance=ExtResource("3_nd4ou")]
+host = NodePath("..")
+NavAgent = NodePath("../NavigationAgent3D")
+speed = 25.0
+accel = 3.0
+
+[node name="DamageArea" parent="." node_paths=PackedStringArray("host", "area") instance=ExtResource("4_f64r4")]
+host = NodePath("..")
+area = NodePath("../SpikeArea")
+damage = 25.0
+DoKnockback = true
+
+[node name="ParticleStartPos" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02327, 0)
+
 [node name="Meshes" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.44988, 0)
+script = ExtResource("5_xsivy")
 
 [node name="RightLeg" type="Node3D" parent="Meshes"]
 transform = Transform3D(0.992084, 0, -0.125576, 0, 1, 0, 0.125576, 0, 0.992084, -6.43377e-09, -2.22654, -1.17401)

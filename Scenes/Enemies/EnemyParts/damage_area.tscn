@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx5q7y3tbklyq"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/Parts/damage_area.gd" id="1_o8sac"]
+
+[node name="DamageArea" type="Node"]
+script = ExtResource("1_o8sac")
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
