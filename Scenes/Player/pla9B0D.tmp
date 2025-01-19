@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dmwv25fu0o4fw"]
+[gd_scene load_steps=40 format=3 uid="uid://dmwv25fu0o4fw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_gy4rw"]
 [ext_resource type="Script" path="res://Scripts/Player/stats.gd" id="1_ivf41"]
@@ -8,14 +8,11 @@
 [ext_resource type="Script" path="res://Scripts/Player/console.gd" id="4_auxvo"]
 [ext_resource type="Script" path="res://Scenes/Player/sound.gd" id="5_dhxhp"]
 [ext_resource type="Texture2D" uid="uid://be7vhrp45g3ew" path="res://Assets/Textures/Weapons/HandIdle.png" id="5_hmdxp"]
-[ext_resource type="AudioStream" uid="uid://tt6yclcsf2w4" path="res://Assets/sound/step.wav" id="6_hkwj1"]
-[ext_resource type="AudioStream" uid="uid://bcw4qq1akwolr" path="res://Assets/sound/jump.wav" id="7_hbbqs"]
+[ext_resource type="AudioStream" uid="uid://btybcybw537ma" path="res://Assets/sound/Stepping sound.wav" id="5_tlhp3"]
 [ext_resource type="Texture2D" uid="uid://bwr53tht4eraq" path="res://Assets/Textures/Weapons/BombCharged1.png" id="7_lxq80"]
-[ext_resource type="AudioStream" uid="uid://c6x16nepfyclx" path="res://Assets/sound/land.wav" id="8_5uogr"]
 [ext_resource type="Texture2D" uid="uid://bqdxk5ysu6eiv" path="res://Assets/Textures/crosshair.png" id="8_laitr"]
 [ext_resource type="Texture2D" uid="uid://d31u5qfq3hk2a" path="res://Assets/Textures/Weapons/ChargeshotRelease.png" id="9_2gc4x"]
 [ext_resource type="Texture2D" uid="uid://c668mpksg7ki7" path="res://Assets/Textures/DashIcon3.png" id="9_6ww2s"]
-[ext_resource type="AudioStream" uid="uid://dyy8b5p130gqf" path="res://Assets/sound/dash.wav" id="9_lncbg"]
 [ext_resource type="Texture2D" uid="uid://ckbmokfhhh0o3" path="res://Assets/Textures/Weapons/HandShoot.png" id="9_qtnrw"]
 [ext_resource type="Texture2D" uid="uid://b6q70qnjggrvj" path="res://Assets/Textures/Weapons/BombCharged2.png" id="10_qmh2p"]
 [ext_resource type="Texture2D" uid="uid://45rx2dp8qq27" path="res://Assets/Textures/Weapons/BombCharged3.png" id="11_5dlnk"]
@@ -626,20 +623,7 @@ script = ExtResource("4_auxvo")
 script = ExtResource("5_dhxhp")
 
 [node name="WalkingSounds" type="AudioStreamPlayer3D" parent="Sound"]
-stream = ExtResource("6_hkwj1")
-volume_db = -5.0
-
-[node name="JumpSound" type="AudioStreamPlayer3D" parent="Sound"]
-stream = ExtResource("7_hbbqs")
-volume_db = -10.0
-
-[node name="LandSound" type="AudioStreamPlayer3D" parent="Sound"]
-stream = ExtResource("8_5uogr")
-volume_db = -30.0
-
-[node name="DashSound" type="AudioStreamPlayer3D" parent="Sound"]
-stream = ExtResource("9_lncbg")
-volume_db = -27.5
+stream = ExtResource("5_tlhp3")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2nbw2")

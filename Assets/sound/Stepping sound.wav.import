@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://btybcybw537ma"
+path="res://.godot/imported/Stepping sound.wav-7e914df4f7e1b893478d2d727e77825e.sample"
+
+[deps]
+
+source_file="res://Assets/sound/Stepping sound.wav"
+dest_files=["res://.godot/imported/Stepping sound.wav-7e914df4f7e1b893478d2d727e77825e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

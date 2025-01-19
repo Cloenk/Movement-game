@@ -4,6 +4,8 @@ extends CharacterBody3D
 @onready var grapple_raycast = $Head/GrappleRaycast
 @onready var rope = $Head/Rope
 @onready var stats = $Stats
+@onready var cayote_timer = $CayoteTimer
+@onready var sound = $Sound
 #velocities
 var WalkingVelocity = Vector3()
 var JumpingVelocity = Vector3()
@@ -65,6 +67,7 @@ func damage(dmg: float):
 		stats.HP -= dmg
 
 func dash(): #Dashing
+	sound.DoDashSound = true
 	IsDashing = true
 	CanDash = false
 	$DashTimer.start()
@@ -94,11 +97,6 @@ func _process(delta):
 		FOVChange = lerp(FOVChange, 2.0, 0.075)
 	$Head/Camera3D.set_fov(lerp(75.0,75.0 + PlayerSpeed / FOVChange, 0.075))
 	$UI/Speed.text = str(round(PlayerSpeed))
-	
-	#if PlayerSpeed >= 50:
-		#$Head/Camera3D.set_fov(lerp($Head/Camera3D.get_fov(), 75.0 + 50.0 / 6.0, 0.5))
-	#else:
-		#$Head/Camera3D.set_fov(lerp($Head/Camera3D.get_fov(), 75.0 + PlayerSpeed / 6.0, 0.5))
 
 	$UI/HP.text = str(stats.HP)
 	if CanDash == true:
@@ -187,19 +185,22 @@ func _physics_process(delta):
 	if is_on_wall(): #stop dash when wall kaboem
 		if $Head/ForwardWallCast.is_colliding() or $Head/BackwardsWallCast.is_colliding():
 			DashingVelocity = Vector3.ZERO
-	if Input.is_action_just_pressed("ui_accept"): #jumping
-		if IsGrounded: #normal jump
+	if Input.is_action_just_pressed("ui_accept") : #jumping
+		if IsGrounded or !cayote_timer.is_stopped(): #normal jump
 			GrappleVelocity.y = 0
 			ExplosionVelocity.y = 0
 			JumpingVelocity.y = JumpVelocity
+			sound.DoJumpSounds = true
 			$".".global_position.y += 0.2
 
 			if IsDashing: #dash jump
 				StopVelWhenLand = true
 				DashingVelocity *= 1.5
+				DashingVelocity.y += 8
 				DashLerpSpeed = 0.03
 
 		if is_on_wall_only(): #wall jump
+			sound.DoJumpSounds = true
 			WallJumpVelocity = get_wall_normal() * 25
 			JumpingVelocity.y = 19
 
@@ -211,6 +212,13 @@ func _physics_process(delta):
 	else:
 		WalkingVelocity.x = move_toward(WalkingVelocity.x, 0, stats.speed * delta)
 		WalkingVelocity.z = move_toward(WalkingVelocity.z, 0, stats.speed * delta)
+	if input_dir:
+		if IsGrounded and !IsGrappling:
+			sound.DoWalkingSounds = true
+		else:
+			sound.DoWalkingSounds = false
+	else:
+		sound.DoWalkingSounds = false
 	velocity = WalkingVelocity + JumpingVelocity + DashingVelocity + WallJumpVelocity + GrappleVelocity + SlamVelocity + ExplosionVelocity + MeleeVelocity #Add velocity
 	
 	#MAKE VELOCITY GO DOWN
@@ -221,7 +229,11 @@ func _physics_process(delta):
 	MeleeVelocity = lerp(MeleeVelocity, Vector3.ZERO, DashLerpSpeed)
 	if IsGrappling == false:
 		GrappleVelocity = lerp(GrappleVelocity, Vector3.ZERO, GrappleLerpSpeed)
+	
+	var was_on_floor = is_on_floor()
 	move_and_slide()
+	if was_on_floor && !is_on_floor():
+		cayote_timer.start()
 
 func _on_dash_timer_timeout():
 	CanDash = true

@@ -1,0 +1,35 @@
+extends Node3D
+
+@onready var player = $".."
+@onready var walking = $WalkingSounds
+@onready var jump = $JumpSound
+@onready var land = $LandSound
+@onready var dash = $DashSound
+
+var DoWalkingSounds = false
+var DoJumpSounds = false
+var DoLandSound = false
+var DoDashSound = false
+
+func _process(delta):
+	if DoWalkingSounds == true:
+		if walking.playing == false:
+			walking.pitch_scale = randf_range(0.8, 1.2)
+			walking.play()
+	
+	if DoJumpSounds == true:
+		jump.pitch_scale = randf_range(0.8, 1.1)
+		jump.play()
+		DoJumpSounds = false
+	
+	if player.velocity.y <= -10:
+		DoLandSound = true
+	if DoLandSound == true and player.IsGrounded:
+		DoLandSound = false
+		land.pitch_scale = randf_range(0.8, 1.1)
+		land.play()
+	
+	if DoDashSound == true:
+		dash.pitch_scale = randf_range(0.8, 1.1)
+		dash.play()
+		DoDashSound = false
