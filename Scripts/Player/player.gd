@@ -79,6 +79,7 @@ func dash(): #Dashing
 	DashingVelocity = direction.normalized() * stats.DashVel
 
 func SecondDash():
+	sound.DoSlashSound = true
 	if !is_on_floor():
 		StopVelWhenLandMelee = true
 	WalkingVelocity = Vector3.ZERO

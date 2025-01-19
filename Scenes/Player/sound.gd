@@ -5,11 +5,13 @@ extends Node3D
 @onready var jump = $JumpSound
 @onready var land = $LandSound
 @onready var dash = $DashSound
+@onready var slash = $SlashSound
 
 var DoWalkingSounds = false
 var DoJumpSounds = false
 var DoLandSound = false
 var DoDashSound = false
+var DoSlashSound = false
 
 func _process(delta):
 	if DoWalkingSounds == true:
@@ -33,3 +35,8 @@ func _process(delta):
 		dash.pitch_scale = randf_range(0.8, 1.1)
 		dash.play()
 		DoDashSound = false
+	
+	if DoSlashSound == true:
+		slash.pitch_scale = randf_range(0.8, 1.1)
+		slash.play()
+		DoSlashSound = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dmwv25fu0o4fw"]
+[gd_scene load_steps=44 format=3 uid="uid://dmwv25fu0o4fw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_gy4rw"]
 [ext_resource type="Script" path="res://Scripts/Player/stats.gd" id="1_ivf41"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://c668mpksg7ki7" path="res://Assets/Textures/DashIcon3.png" id="9_6ww2s"]
 [ext_resource type="AudioStream" uid="uid://dyy8b5p130gqf" path="res://Assets/sound/dash.wav" id="9_lncbg"]
 [ext_resource type="Texture2D" uid="uid://ckbmokfhhh0o3" path="res://Assets/Textures/Weapons/HandShoot.png" id="9_qtnrw"]
+[ext_resource type="AudioStream" uid="uid://cvkkeashm7r8s" path="res://Assets/sound/slash.wav" id="10_4t61b"]
 [ext_resource type="Texture2D" uid="uid://b6q70qnjggrvj" path="res://Assets/Textures/Weapons/BombCharged2.png" id="10_qmh2p"]
 [ext_resource type="Texture2D" uid="uid://45rx2dp8qq27" path="res://Assets/Textures/Weapons/BombCharged3.png" id="11_5dlnk"]
 [ext_resource type="Texture2D" uid="uid://d0ef1mw2k5b4u" path="res://Assets/Textures/Weapons/HandCharge.png" id="12_7sbbn"]
@@ -640,6 +641,10 @@ volume_db = -30.0
 [node name="DashSound" type="AudioStreamPlayer3D" parent="Sound"]
 stream = ExtResource("9_lncbg")
 volume_db = -27.5
+
+[node name="SlashSound" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("10_4t61b")
+volume_db = -20.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2nbw2")
