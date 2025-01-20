@@ -7,6 +7,7 @@ extends CharacterBody3D
 @onready var cayote_timer = $CayoteTimer
 @onready var sound = $Sound
 @onready var hand = $Head/Hand
+@onready var target = $Head/target
 #velocities
 var WalkingVelocity = Vector3()
 var JumpingVelocity = Vector3()
@@ -47,7 +48,7 @@ var IsGrapplingEnemy = false
 var FOVChange = 1.0
 var mouseMov = Vector3.ZERO
 var swayThresh = 0.5
-var swaySpeed = 5
+var swaySpeed = 2
 var swayAmount = 0.05
 var defaultRot
 var defaultPos
@@ -58,10 +59,14 @@ func _ready():
 	defaultRot = $Head/Hand.rotation
 	defaultPos = $Head/Hand.position
 
-func _input(event): #Mouse look
+func _input(event : InputEvent): #Mouse look
 	if event is InputEventMouseMotion:
 		mouseMov = Vector3(-event.relative.x * MouseSens, -event.relative.y * MouseSens, 0)
 		mouse_input = event.relative
+		var vel := Vector3(event.relative.x, -event.relative.y, 0.0) / 1000.0
+		target.position.x += vel.x
+		target.position.y += vel.y
+		target.position.z = -0.776
 		rotate_y(deg_to_rad(-event.relative.x * MouseSens))
 		head.rotate_x(deg_to_rad(-event.relative.y * MouseSens))
 		head.rotation.x = clamp(head.rotation.x,deg_to_rad(-89),deg_to_rad(89))
@@ -92,8 +97,6 @@ func SecondDash():
 	MeleeVelocity = ($Head/ShootingRayCastEnd.global_transform.origin - global_transform.origin).normalized() * stats.MeleeDashAmount
 
 func _process(delta):
-	weaponMove(delta)
-	
 	PlayerSpeed = velocity.length()
 	if PlayerSpeed <= 30:
 		FOVChange = lerp(FOVChange, 1.0, 0.075)
@@ -239,17 +242,23 @@ func _physics_process(delta):
 	move_and_slide()
 	if was_on_floor && !is_on_floor():
 		cayote_timer.start()
+	
+	hand.position = Global.smooth_nudgev(hand.position, target.position, swaySpeed, delta)
+	target.position = Global.smooth_nudgev(target.position,defaultPos , 25, delta)
+	#hand.rotation = Global.smooth_nudgev_rot(hand.rotation, target.rotation, 50, delta)
+	#target.rotation = Global.smooth_nudgev_rot(target.rotation,defaultRot , 15, delta)
+
 
 func _on_dash_timer_timeout():
 	CanDash = true
 func _on_is_dashing_timer_timeout():
 	IsDashing = false
 
-func weaponMove(delta):
-	var mouseMovLength = mouseMov.length()
-	if (mouseMovLength > swayThresh or mouseMovLength < -swayThresh):
-		$Head/Hand.rotation = $Head/Hand.rotation.lerp(mouseMov.normalized() * swayAmount + defaultRot, swaySpeed * delta)
-		$Head/Hand.position = $Head/Hand.position.lerp(mouseMov * swayAmount + defaultPos, swaySpeed * delta)
-	else:
-		$Head/Hand.rotation = $Head/Hand.rotation.lerp(defaultRot, swaySpeed * delta)
-		$Head/Hand.position = $Head/Hand.position.lerp(defaultPos, swaySpeed * delta)
+#func weaponMove(delta):
+	#var mouseMovLength = mouseMov.length()
+	#if (mouseMovLength > swayThresh or mouseMovLength < -swayThresh):
+		#$Head/Hand.rotation = $Head/Hand.rotation.lerp(mouseMov.normalized() * swayAmount + defaultRot, swaySpeed * delta)
+		#$Head/Hand.position = $Head/Hand.position.lerp(mouseMov * swayAmount + defaultPos, swaySpeed * delta)
+	#else:
+		#$Head/Hand.rotation = $Head/Hand.rotation.lerp(defaultRot, swaySpeed * delta)
+		#$Head/Hand.position = $Head/Hand.position.lerp(defaultPos, swaySpeed * delta)

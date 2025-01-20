@@ -18,12 +18,12 @@ config/name="Epic movement"
 config/tags=PackedStringArray("workingon")
 run/main_scene="res://Scenes/Levels/testing_ground.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-run/max_fps=35
 config/icon="res://icon.svg"
 
 [autoload]
 
 Console="*res://addons/console/console.gd"
+Global="*res://Scripts/global.gd"
 
 [debug]
 

@@ -723,6 +723,9 @@ texture = ExtResource("9_2gc4x")
 [node name="LaserStartPos" type="Marker3D" parent="Head/Hand"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.33766, -0.961187, -0.458255)
 
+[node name="target" type="Marker3D" parent="Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.565, -0.135, -0.776)
+
 [node name="SecondHand" type="Sprite3D" parent="Head"]
 transform = Transform3D(0.14, 0, 0, 0, 0.14, 0, 0, 0, 0.14, -0.644311, -0.135, -0.776)
 visible = false
