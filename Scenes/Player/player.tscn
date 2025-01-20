@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dmwv25fu0o4fw"]
+[gd_scene load_steps=45 format=3 uid="uid://dmwv25fu0o4fw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_gy4rw"]
 [ext_resource type="Script" path="res://Scripts/Player/stats.gd" id="1_ivf41"]
@@ -20,6 +20,7 @@
 [ext_resource type="AudioStream" uid="uid://cvkkeashm7r8s" path="res://Assets/sound/slash.wav" id="10_4t61b"]
 [ext_resource type="Texture2D" uid="uid://b6q70qnjggrvj" path="res://Assets/Textures/Weapons/BombCharged2.png" id="10_qmh2p"]
 [ext_resource type="Texture2D" uid="uid://45rx2dp8qq27" path="res://Assets/Textures/Weapons/BombCharged3.png" id="11_5dlnk"]
+[ext_resource type="AudioStream" uid="uid://e0g5vof6ebxs" path="res://Assets/sound/Wind.mp3" id="11_6jj7m"]
 [ext_resource type="Texture2D" uid="uid://d0ef1mw2k5b4u" path="res://Assets/Textures/Weapons/HandCharge.png" id="12_7sbbn"]
 [ext_resource type="Texture2D" uid="uid://gr1lup0vgjlt" path="res://Assets/Textures/Weapons/BombCharged4.png" id="12_v1dsi"]
 
@@ -590,10 +591,11 @@ script = ExtResource("1_gy4rw")
 
 [node name="Stats" type="Node3D" parent="."]
 script = ExtResource("1_ivf41")
-AttackDMG = 5.0
+AttackSpeed = 0.2
 BulletSpeed = 100.0
 ChargeDamage = 150.0
 BombSize = 2.0
+MeleeDamage = 40.0
 
 [node name="Shooting" type="Node3D" parent="."]
 script = ExtResource("3_1vghd")
@@ -645,6 +647,9 @@ volume_db = -27.5
 [node name="SlashSound" type="AudioStreamPlayer3D" parent="Sound"]
 stream = ExtResource("10_4t61b")
 volume_db = -20.0
+
+[node name="WindSound" type="AudioStreamPlayer3D" parent="Sound"]
+stream = ExtResource("11_6jj7m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_2nbw2")

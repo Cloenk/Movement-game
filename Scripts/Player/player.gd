@@ -6,6 +6,7 @@ extends CharacterBody3D
 @onready var stats = $Stats
 @onready var cayote_timer = $CayoteTimer
 @onready var sound = $Sound
+@onready var hand = $Head/Hand
 #velocities
 var WalkingVelocity = Vector3()
 var JumpingVelocity = Vector3()
@@ -50,6 +51,7 @@ var swaySpeed = 5
 var swayAmount = 0.05
 var defaultRot
 var defaultPos
+var mouse_input = Vector2.ZERO
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -59,6 +61,7 @@ func _ready():
 func _input(event): #Mouse look
 	if event is InputEventMouseMotion:
 		mouseMov = Vector3(-event.relative.x * MouseSens, -event.relative.y * MouseSens, 0)
+		mouse_input = event.relative
 		rotate_y(deg_to_rad(-event.relative.x * MouseSens))
 		head.rotate_x(deg_to_rad(-event.relative.y * MouseSens))
 		head.rotation.x = clamp(head.rotation.x,deg_to_rad(-89),deg_to_rad(89))
@@ -89,6 +92,8 @@ func SecondDash():
 	MeleeVelocity = ($Head/ShootingRayCastEnd.global_transform.origin - global_transform.origin).normalized() * stats.MeleeDashAmount
 
 func _process(delta):
+	weaponMove(delta)
+	
 	PlayerSpeed = velocity.length()
 	if PlayerSpeed <= 30:
 		FOVChange = lerp(FOVChange, 1.0, 0.075)
@@ -104,7 +109,6 @@ func _process(delta):
 		$UI/DashIcon.texture = load("res://Assets/Textures/DashIcon3.png")
 	else:
 		$UI/DashIcon.texture = load("res://Assets/Textures/DashIcon3Gray.png")
-	weaponMove(delta)
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("GroundSlam") and IsGrounded == false:

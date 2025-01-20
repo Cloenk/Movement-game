@@ -6,12 +6,14 @@ extends Node3D
 @onready var land = $LandSound
 @onready var dash = $DashSound
 @onready var slash = $SlashSound
+@onready var wind = $WindSound
 
 var DoWalkingSounds = false
 var DoJumpSounds = false
 var DoLandSound = false
 var DoDashSound = false
 var DoSlashSound = false
+var DoWindSound = false
 
 func _process(delta):
 	if DoWalkingSounds == true:
@@ -40,3 +42,10 @@ func _process(delta):
 		slash.pitch_scale = randf_range(0.8, 1.1)
 		slash.play()
 		DoSlashSound = false
+	
+	if player.velocity.y < -15:
+		wind.set_volume_db(-75 + -player.velocity.y)
+		if !wind.is_playing():
+			wind.play()
+	else:
+		wind.stop()
