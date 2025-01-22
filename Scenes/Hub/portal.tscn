@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://dx75xr771f635"]
+
+[ext_resource type="Texture2D" uid="uid://cvplyened3isx" path="res://Assets/Textures/Portal.png" id="1_fdp4l"]
+[ext_resource type="Script" path="res://Scripts/hub/portal.gd" id="1_sadec"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ueyng"]
+shading_mode = 0
+albedo_color = Color(0.984533, 0, 0.478339, 1)
+albedo_texture = ExtResource("1_fdp4l")
+uv1_scale = Vector3(6.83, 6.83, 6.83)
+uv1_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_de8sc"]
+material = SubResource("StandardMaterial3D_ueyng")
+radius = 2.0
+height = 4.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_onpd0"]
+radius = 2.0
+
+[node name="Portal" type="Node3D"]
+script = ExtResource("1_sadec")
+
+[node name="Ball" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_de8sc")
+
+[node name="PlayerArea" type="Area3D" parent="."]
+collision_layer = 5
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerArea"]
+shape = SubResource("SphereShape3D_onpd0")

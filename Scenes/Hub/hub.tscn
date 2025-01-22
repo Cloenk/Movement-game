@@ -1,8 +1,10 @@
-[gd_scene load_steps=24 format=4 uid="uid://dx6piytduvt8q"]
+[gd_scene load_steps=26 format=4 uid="uid://dx6piytduvt8q"]
 
 [ext_resource type="Script" path="res://Scripts/hub/hub.gd" id="1_25ikn"]
 [ext_resource type="PackedScene" uid="uid://dmwv25fu0o4fw" path="res://Scenes/Player/player.tscn" id="1_xoi5m"]
+[ext_resource type="PackedScene" uid="uid://dx75xr771f635" path="res://Scenes/Hub/portal.tscn" id="4_ikp6o"]
 [ext_resource type="Material" uid="uid://d3t31s3tvky28" path="res://Assets/Materials/maps/Stone.tres" id="4_ksvpm"]
+[ext_resource type="PackedScene" uid="uid://y0gmok2r2kwr" path="res://Scenes/Levels/testing_ground.tscn" id="5_7ljpi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_87vxv"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -175,3 +177,7 @@ sky_mode = 1
 [node name="SkyLight" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 27.0414, 0)
 light_energy = 0.1
+
+[node name="Portal" parent="." instance=ExtResource("4_ikp6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.1605, -48.696)
+Scene = ExtResource("5_7ljpi")
