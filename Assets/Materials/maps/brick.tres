@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://bv4yuiy7takgy"]
+
+[ext_resource type="Texture2D" uid="uid://b6ke45scqa1dt" path="res://Assets/Textures/PavingStones142_1K-PNG/PavingStones142_1K-PNG_Color.png" id="1_n2d26"]
+[ext_resource type="Texture2D" uid="uid://drp0g5j8t127v" path="res://Assets/Textures/PavingStones142_1K-PNG/PavingStones142_1K-PNG_NormalDX.png" id="2_kplfa"]
+
+[resource]
+albedo_texture = ExtResource("1_n2d26")
+normal_scale = 16.0
+normal_texture = ExtResource("2_kplfa")
+uv1_scale = Vector3(0.265, 0.265, 0.265)
+uv1_triplanar = true

@@ -105,13 +105,14 @@ func _process(delta):
 	if PlayerSpeed >= 50:
 		FOVChange = lerp(FOVChange, 2.0, 0.075)
 	$Head/Camera3D.set_fov(lerp(75.0,75.0 + PlayerSpeed / FOVChange, 0.075))
-	$UI/Speed.text = str(round(PlayerSpeed))
+	#$UI/Speed.text = str(round(PlayerSpeed))
+	$UI/Speed.text = str(Engine.get_frames_per_second())
 
 	$UI/HP.text = str(stats.HP)
 	if CanDash == true:
-		$UI/DashIcon.texture = load("res://Assets/Textures/DashIcon3.png")
+		$UI/DashIcon.texture = load("res://Assets/Textures/ui/DashIcon3.png")
 	else:
-		$UI/DashIcon.texture = load("res://Assets/Textures/DashIcon3Gray.png")
+		$UI/DashIcon.texture = load("res://Assets/Textures/ui/DashIcon3Gray.png")
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("GroundSlam") and IsGrounded == false:

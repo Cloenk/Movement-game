@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://y0gmok2r2kwr"]
 
 [ext_resource type="PackedScene" uid="uid://dmwv25fu0o4fw" path="res://Scenes/Player/player.tscn" id="2_5jnxf"]
-[ext_resource type="Material" uid="uid://d2gx13i48rxff" path="res://Assets/Materials/Grass.tres" id="2_k1u55"]
+[ext_resource type="Material" uid="uid://d2gx13i48rxff" path="res://Assets/Materials/maps/Grass.tres" id="2_k1u55"]
 [ext_resource type="ArrayMesh" uid="uid://blrirvtskcj4f" path="res://Assets/3dModels/Terrain/firstTerrain.obj" id="3_04ifd"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4jsqd"]
