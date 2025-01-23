@@ -16,7 +16,7 @@ warnings/check_invalid_track_paths=false
 
 config/name="Epic movement"
 config/tags=PackedStringArray("workingon")
-run/main_scene="res://Scenes/Levels/testing_ground.tscn"
+run/main_scene="res://Scenes/Hub/hub.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
