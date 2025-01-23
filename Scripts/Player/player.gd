@@ -178,7 +178,7 @@ func _physics_process(delta):
 		JumpingVelocity.y -= Gravity * delta
 		GrappleLerpSpeed = 0.03
 	else:
-		GrappleLerpSpeed = 0.05
+		GrappleLerpSpeed = 0.1
 		WallJumpVelocity = lerp(WallJumpVelocity, Vector3.ZERO, 0.7)
 		JumpingVelocity.y = 0
 		SlamVelocity.y = 0
@@ -205,7 +205,7 @@ func _physics_process(delta):
 			if IsDashing: #dash jump
 				StopVelWhenLand = true
 				DashingVelocity *= 1.5
-				DashingVelocity.y += 8
+				#DashingVelocity.y += 8
 				DashLerpSpeed = 0.03
 
 		if is_on_wall_only(): #wall jump
@@ -234,7 +234,6 @@ func _physics_process(delta):
 	DashingVelocity = lerp(DashingVelocity, Vector3.ZERO, DashLerpSpeed)
 	WallJumpVelocity = lerp(WallJumpVelocity, Vector3.ZERO, WallJumpLerpSpeed)
 	ExplosionVelocity = lerp(ExplosionVelocity, Vector3.ZERO, ExplosionLerpSpeed)
-	GrappleVelocity.y = lerp(GrappleVelocity.y, 0.0, GrappleLerpSpeed)
 	MeleeVelocity = lerp(MeleeVelocity, Vector3.ZERO, DashLerpSpeed)
 	if IsGrappling == false:
 		GrappleVelocity = lerp(GrappleVelocity, Vector3.ZERO, GrappleLerpSpeed)
@@ -248,7 +247,6 @@ func _physics_process(delta):
 	target.position = Global.smooth_nudgev(target.position,defaultPos , 25, delta)
 	#hand.rotation = Global.smooth_nudgev_rot(hand.rotation, target.rotation, 50, delta)
 	#target.rotation = Global.smooth_nudgev_rot(target.rotation,defaultRot , 15, delta)
-
 
 func _on_dash_timer_timeout():
 	CanDash = true
