@@ -15,11 +15,11 @@ func summon(enemy):
 	if enemy == "squid":
 		scene = SquidmanScene.instantiate()
 		scene.global_position = $"../Head/EnemySpawnLocation".global_position
-		get_parent().get_parent().add_child(scene)
+		get_parent().get_parent().enemies.add_child(scene)
 	if enemy == "spike":
 		scene = SpikeScene.instantiate()
 		scene.global_position = $"../Head/EnemySpawnLocation".global_position
-		get_parent().get_parent().add_child(scene)
+		get_parent().get_parent().enemies.add_child(scene)
 
 func reload():
 	get_tree().reload_current_scene()

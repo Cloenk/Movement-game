@@ -33,7 +33,7 @@ func shoot():
 	bul.rotation.y = host.rotation.y
 	bul.linear_velocity = BulletStartPosNode.global_transform.basis.z * -1 * BulletVelocity
 	bul.dmg = Damage
-	host.get_parent().add_child(bul)
+	host.get_parent().get_parent().entities.add_child(bul)
 
 func _on_timer_timeout():
 	CanFire = true

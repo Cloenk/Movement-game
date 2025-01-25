@@ -1,13 +1,16 @@
 extends CharacterBody3D
 #refs
 @onready var head = $Head
+@onready var camera = $Head/Camera3D
 @onready var grapple_raycast = $Head/GrappleRaycast
 @onready var rope = $Head/Rope
+@onready var shooting = $Shooting
 @onready var stats = $Stats
 @onready var cayote_timer = $CayoteTimer
 @onready var sound = $Sound
 @onready var hand = $Head/Hand
 @onready var target = $Head/target
+@onready var transition = $Transition
 #velocities
 var WalkingVelocity = Vector3()
 var JumpingVelocity = Vector3()
@@ -21,6 +24,7 @@ var MeleeVelocity = Vector3()
 var input_dir = Vector3.ZERO
 var direction = Vector3.ZERO
 #movement vars
+var canMove = true
 var JumpVelocity = 14
 var MouseSens = 0.3
 var Gravity = 15
@@ -74,27 +78,52 @@ func _input(event : InputEvent): #Mouse look
 func damage(dmg: float):
 		stats.HP -= dmg
 
-func dash(): #Dashing
-	sound.DoDashSound = true
-	IsDashing = true
-	CanDash = false
-	$DashTimer.start()
-	$IsDashingTimer.start()
+func resetCooldowns():
+	shooting.CanShoot = true
+	shooting.CanCharge = true
+	shooting.CanBomb = true
+	shooting.CanBall = true
+	shooting.CanSlash = true
+	shooting.CanDash = true
+	$Shooting/ShootingTimer.stop()
+	$Shooting/chargeTimer.stop()
+	$Shooting/BombTimer.stop()
+	$Shooting/BallTimer.stop()
+	$Shooting/SlashTimer.stop()
+	$Shooting/DashTimer.stop()
+	velocity = Vector3.ZERO
 	WalkingVelocity = Vector3.ZERO
 	JumpingVelocity = Vector3.ZERO
+	DashingVelocity = Vector3.ZERO
+	WallJumpVelocity = Vector3.ZERO
 	GrappleVelocity = Vector3.ZERO
 	SlamVelocity = Vector3.ZERO
-	DashingVelocity = direction.normalized() * stats.DashVel
+	ExplosionVelocity = Vector3.ZERO
+	MeleeVelocity = Vector3.ZERO
+
+func dash(): #Dashing
+	if canMove:
+		sound.DoDashSound = true
+		IsDashing = true
+		CanDash = false
+		$DashTimer.start()
+		$IsDashingTimer.start()
+		WalkingVelocity = Vector3.ZERO
+		JumpingVelocity = Vector3.ZERO
+		GrappleVelocity = Vector3.ZERO
+		SlamVelocity = Vector3.ZERO
+		DashingVelocity = direction.normalized() * stats.DashVel
 
 func SecondDash():
-	sound.DoSlashSound = true
-	if !is_on_floor():
-		StopVelWhenLandMelee = true
-	WalkingVelocity = Vector3.ZERO
-	JumpingVelocity = Vector3.ZERO
-	GrappleVelocity = Vector3.ZERO
-	SlamVelocity = Vector3.ZERO
-	MeleeVelocity = ($Head/ShootingRayCastEnd.global_transform.origin - global_transform.origin).normalized() * stats.MeleeDashAmount
+	if canMove:
+		sound.DoSlashSound = true
+		if !IsGrounded:
+			StopVelWhenLandMelee = true
+		WalkingVelocity = Vector3.ZERO
+		JumpingVelocity = Vector3.ZERO
+		GrappleVelocity = Vector3.ZERO
+		SlamVelocity = Vector3.ZERO
+		MeleeVelocity = ($Head/ShootingRayCastEnd.global_transform.origin - global_transform.origin).normalized() * stats.MeleeDashAmount
 
 func _process(delta):
 	PlayerSpeed = velocity.length()
@@ -126,7 +155,7 @@ func _physics_process(delta):
 	if GrappledEnemy != null:
 		GrappleEnd = GrappledEnemy.global_position
 	
-	if Input.is_action_pressed("graple"): #Dash input
+	if Input.is_action_pressed("graple") and canMove: #Dash input
 		if IsGrapplingEnemy == true and IsGrappling == true:
 			if not is_instance_valid(GrappledEnemy):
 				IsGrappling = false
@@ -161,7 +190,7 @@ func _physics_process(delta):
 
 	if IsGrappling == true: #DO THE GRAPPLE
 		var grapple_direction = (GrappleEnd - global_position).normalized()
-		var grapple_target_speed = grapple_direction * 100
+		var grapple_target_speed = grapple_direction * 150
 		var grapple_diff = (grapple_target_speed - velocity)
 		GrappleVelocity += grapple_diff * delta
 		var dist = global_position.distance_to(GrappleEnd)
@@ -205,7 +234,7 @@ func _physics_process(delta):
 			if IsDashing: #dash jump
 				StopVelWhenLand = true
 				DashingVelocity *= 1.5
-				#DashingVelocity.y += 8
+				DashingVelocity.y += 8
 				DashLerpSpeed = 0.03
 
 		if is_on_wall_only(): #wall jump
@@ -228,7 +257,8 @@ func _physics_process(delta):
 			sound.DoWalkingSounds = false
 	else:
 		sound.DoWalkingSounds = false
-	velocity = WalkingVelocity + JumpingVelocity + DashingVelocity + WallJumpVelocity + GrappleVelocity + SlamVelocity + ExplosionVelocity + MeleeVelocity #Add velocity
+	if canMove:
+		velocity = WalkingVelocity + JumpingVelocity + DashingVelocity + WallJumpVelocity + GrappleVelocity + SlamVelocity + ExplosionVelocity + MeleeVelocity #Add velocity
 	
 	#MAKE VELOCITY GO DOWN
 	DashingVelocity = lerp(DashingVelocity, Vector3.ZERO, DashLerpSpeed)

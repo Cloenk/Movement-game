@@ -30,7 +30,7 @@ DamageNode = NodePath("Damage")
 ParticleScene = ExtResource("3_owtxp")
 ParticlePos = NodePath("../BulletStartPos")
 host = NodePath("..")
-hp = 100.0
+hp = 60.0
 
 [node name="Shooting" parent="." node_paths=PackedStringArray("host", "BulletStartPosNode") instance=ExtResource("3_erauh")]
 host = NodePath("..")
@@ -38,13 +38,13 @@ BulletStartPosNode = NodePath("../BulletStartPos")
 Cooldown = 1.0
 Damage = 10.0
 BulletVelocity = 60.0
-ShootingRange = 50.0
+ShootingRange = 100.0
 LookAtTarget = true
 
 [node name="SquidMovement" type="Node" parent="." node_paths=PackedStringArray("host")]
 script = ExtResource("4_tmuwo")
 host = NodePath("..")
-speed = 15.0
+speed = 25.0
 
 [node name="Meshes" type="Node3D" parent="."]
 transform = Transform3D(-8.74228e-08, 0, 2, 0, 2, 0, -2, 0, -8.74228e-08, 0, 0, 0)
@@ -101,7 +101,6 @@ surface_material_override/1 = ExtResource("4_skfye")
 
 [node name="Star" type="Sprite3D" parent="Meshes/Torso"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.127964, 1.58666, -0.011125)
-modulate = Color(0.581033, 0.581033, 0.581033, 1)
 texture_filter = 0
 texture = ExtResource("6_ybgua")
 

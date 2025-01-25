@@ -10,7 +10,7 @@ func Damage(dmg):
 	var particle = ParticleScene.instantiate()
 	particle.global_position = ParticlePos.global_position
 	particle.amount += dmg / 2
-	host.get_parent().add_child(particle)
+	host.get_parent().get_parent().entities.add_child(particle)
 	dmg / 100 * damagePercent
 	hp -= dmg
 	if hp <= 0:

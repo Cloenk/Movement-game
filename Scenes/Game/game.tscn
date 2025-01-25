@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm8k25tji5hlu"]
+
+[ext_resource type="PackedScene" uid="uid://dmwv25fu0o4fw" path="res://Scenes/Player/player.tscn" id="1_3gdom"]
+[ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_8hu15"]
+[ext_resource type="Script" path="res://Scripts/Game/room_spawner.gd" id="2_lv03j"]
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_8hu15")
+
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Enemies" type="Node3D" parent="."]
+
+[node name="RoomSpawner" type="Node3D" parent="."]
+script = ExtResource("2_lv03j")
+
+[node name="WaveTimer" type="Timer" parent="RoomSpawner"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Player" parent="." instance=ExtResource("1_3gdom")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.66192, 0)
+
+[node name="NextRoundTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="RoomSpawner/WaveTimer" to="RoomSpawner" method="_on_wave_timer_timeout"]
+[connection signal="timeout" from="NextRoundTimer" to="." method="_on_next_round_timer_timeout"]

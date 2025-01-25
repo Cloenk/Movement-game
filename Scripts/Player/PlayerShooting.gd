@@ -171,7 +171,7 @@ func ShootBullet():
 	bul.rotation.y = $"..".rotation.y
 	bul.size = Vector3(stats.BulletSize, stats.BulletSize, stats.BulletSize)
 	bul.linear_velocity = shooting_start.global_transform.basis.z * -1 * stats.BulletSpeed + Vector3(sprx, spry, sprx)
-	get_parent().get_parent().add_child(bul)
+	get_parent().get_parent().entities.add_child(bul)
 
 func ShootBomb():
 	var Collider = $"../Head/ShootingRayCast".get_collider()
@@ -184,13 +184,13 @@ func ShootBomb():
 			exp.global_position = $"../Head/ShootingRayCast".get_collision_point()
 			exp.size = stats.BombSize
 			exp.Damage = stats.BombDMG
-			get_parent().get_parent().add_child(exp)
+			get_parent().get_parent().entities.add_child(exp)
 	else:
 		return
 
 func ShootLaser():
 	var laser = laserScene.instantiate()
-	get_parent().get_parent().add_child(laser)
+	get_parent().get_parent().entities.add_child(laser)
 	laser.global_position = $"../Head/Hand/LaserStartPos".global_position
 	laser.rotation.x += $"../Head".rotation.x
 	laser.rotation.y += $"..".rotation.y
@@ -210,7 +210,7 @@ func ShootBall():
 	bul.rotation.x = $"../Head".rotation.x
 	bul.rotation.y = $"..".rotation.y
 	bul.linear_velocity = shooting_start.global_transform.basis.z * -1 * 50 + get_parent().velocity * 2
-	get_parent().get_parent().add_child(bul)
+	get_parent().get_parent().entities.add_child(bul)
 
 func _on_shooting_timer_timeout():
 	CanShoot = true

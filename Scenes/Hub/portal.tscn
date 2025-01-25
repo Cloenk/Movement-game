@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx75xr771f635"]
+[gd_scene load_steps=7 format=3 uid="uid://dx75xr771f635"]
 
 [ext_resource type="Texture2D" uid="uid://cvplyened3isx" path="res://Assets/Textures/Portal.png" id="1_fdp4l"]
 [ext_resource type="Script" path="res://Scripts/hub/portal.gd" id="1_sadec"]
+[ext_resource type="Texture2D" uid="uid://c4hkopro5ukn4" path="res://Assets/Textures/pixil-frame-0 - 2025-01-24T140643.844.png" id="3_1k5ya"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ueyng"]
 shading_mode = 0
@@ -30,3 +31,14 @@ collision_mask = 5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PlayerArea"]
 shape = SubResource("SphereShape3D_onpd0")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.531599, 0.00375959, 0.982145, 1)
+light_energy = 2.0
+omni_range = 9.96099
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(5.02, 0, 0, 0, 5.02, 0, 0, 0, 5.02, 0, 0, 0)
+billboard = 1
+texture_filter = 0
+texture = ExtResource("3_1k5ya")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bmg7mirq8qyha"]
+[gd_scene load_steps=17 format=3 uid="uid://bmg7mirq8qyha"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.gd" id="1_4gs4w"]
 [ext_resource type="ArrayMesh" uid="uid://c1yxcurxti54t" path="res://Assets/3dModels/SpikeBall/SpikyBall.obj" id="1_tbcea"]
@@ -26,7 +26,7 @@ height = 5.07506
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_j1grh"]
 radius = 1.92208
-height = 4.43038
+height = 5.6774
 
 [sub_resource type="Animation" id="Animation_yyal0"]
 length = 0.001
@@ -186,6 +186,8 @@ _data = {
 "Walk": SubResource("Animation_kechb")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nqwut"]
+
 [node name="SpikeBall" type="CharacterBody3D" node_paths=PackedStringArray("DamageNode") groups=["Enemy"]]
 collision_layer = 9
 collision_mask = 9
@@ -196,7 +198,7 @@ DamageNode = NodePath("Damage")
 ParticleScene = ExtResource("3_fx1ut")
 ParticlePos = NodePath("../ParticleStartPos")
 host = NodePath("..")
-hp = 150.0
+hp = 90.0
 
 [node name="Pathfinding" parent="." node_paths=PackedStringArray("host", "NavAgent") instance=ExtResource("3_nd4ou")]
 host = NodePath("..")
@@ -211,10 +213,10 @@ damage = 25.0
 DoKnockback = true
 
 [node name="ParticleStartPos" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.02327, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.47477, 0)
 
 [node name="Meshes" type="Node3D" parent="."]
-transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 1.44988, 0)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 3.82168, 0)
 script = ExtResource("5_xsivy")
 
 [node name="RightLeg" type="Node3D" parent="Meshes"]
@@ -246,10 +248,11 @@ skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_wnwfw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9803, 0)
 shape = SubResource("CapsuleShape3D_fp6ib")
 
 [node name="SpikeArea" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84881, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.22273, 0)
 collision_layer = 5
 collision_mask = 5
 
@@ -266,5 +269,9 @@ debug_enabled = true
 libraries = {
 "": SubResource("AnimationLibrary_v3ao3")
 }
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.00276, 0)
+shape = SubResource("CapsuleShape3D_nqwut")
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

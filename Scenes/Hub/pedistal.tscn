@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy6dv2k8dk068"]
+
+[ext_resource type="ArrayMesh" uid="uid://dyqr8oueq8b62" path="res://Assets/3dModels/HubIslands/pedistal.obj" id="1_d3rd6"]
+[ext_resource type="Material" uid="uid://bv4yuiy7takgy" path="res://Assets/Materials/maps/brick.tres" id="2_nwe8m"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mnino"]
+size = Vector3(3.50293, 0.7229, 3.52502)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jxnnl"]
+size = Vector3(2.76904, 1.43018, 2.71527)
+
+[node name="Pedistal" type="StaticBody3D"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1.75, 0, 0, 0, 1.75, 0, 0, 0, 1.75, 0, 1.73272, 0)
+mesh = ExtResource("1_d3rd6")
+surface_material_override/0 = ExtResource("2_nwe8m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00146484, 0.342407, 0.00128174)
+shape = SubResource("BoxShape3D_mnino")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00268555, 1.4206, -0.00131226)
+shape = SubResource("BoxShape3D_jxnnl")

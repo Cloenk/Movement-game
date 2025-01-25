@@ -1,10 +1,12 @@
-[gd_scene load_steps=26 format=4 uid="uid://dx6piytduvt8q"]
+[gd_scene load_steps=28 format=4 uid="uid://dx6piytduvt8q"]
 
 [ext_resource type="Script" path="res://Scripts/hub/hub.gd" id="1_25ikn"]
 [ext_resource type="PackedScene" uid="uid://dmwv25fu0o4fw" path="res://Scenes/Player/player.tscn" id="1_xoi5m"]
 [ext_resource type="PackedScene" uid="uid://dx75xr771f635" path="res://Scenes/Hub/portal.tscn" id="4_ikp6o"]
 [ext_resource type="Material" uid="uid://d3t31s3tvky28" path="res://Assets/Materials/maps/Stone.tres" id="4_ksvpm"]
 [ext_resource type="PackedScene" uid="uid://y0gmok2r2kwr" path="res://Scenes/Levels/testing_ground.tscn" id="5_7ljpi"]
+[ext_resource type="PackedScene" uid="uid://cy6dv2k8dk068" path="res://Scenes/Hub/pedistal.tscn" id="6_io3yb"]
+[ext_resource type="PackedScene" uid="uid://cm8k25tji5hlu" path="res://Scenes/Game/game.tscn" id="7_aqecs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_87vxv"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -24,7 +26,7 @@ background_mode = 2
 sky = SubResource("Sky_awtpb")
 fog_enabled = true
 fog_light_color = Color(0.0845306, 7.28278e-05, 0.144871, 1)
-fog_density = 0.005
+fog_density = 0.0015
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_xpmec"]
 lightmap_size_hint = Vector2i(5614, 5766)
@@ -126,6 +128,10 @@ size = Vector2(6000, 6000)
 [node name="Hub" type="Node3D"]
 script = ExtResource("1_25ikn")
 
+[node name="Entities" type="Node3D" parent="."]
+
+[node name="Enemies" type="Node3D" parent="."]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hchnr")
 
@@ -147,7 +153,8 @@ transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, -50.1406, 0)
 shape = SubResource("ConcavePolygonShape3D_qre2o")
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="Island"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.34436, 25.3047, 1.07799)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1.34436, 24.9723, 1.07799)
+depth = 2.0
 polygon = PackedVector2Array(-25.335, -61.3366, -4.21553, -61.1545, 18.3604, -58.9698, 36.2027, -51.5051, 58.4146, -36.94, 66.0613, -21.4645, 66.2433, -5.62494, 61.1455, 10.5788, 60.0531, 24.4157, 54.2271, 35.1575, 46.3983, 42.8042, 38.0234, 49.5405, 29.6484, 54.8204, 14.9012, 59.372, 6.34419, 58.8258, -3.85141, 60.6465, -19.3269, 65.016, -33.3458, 59.1899, -43.3593, 48.6302, -51.1881, 32.9727, -56.1038, 9.4864, -55.5577, -3.80429, -55.1935, -26.3803, -48.6392, -42.9481, -37.3512, -56.0567)
 
 [node name="Clouds" type="Node3D" parent="."]
@@ -179,5 +186,15 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 27.
 light_energy = 0.1
 
 [node name="Portal" parent="." instance=ExtResource("4_ikp6o")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 28.1605, -48.696)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30.462, -49)
 Scene = ExtResource("5_7ljpi")
+
+[node name="Pedistal" parent="." instance=ExtResource("6_io3yb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.632, -49)
+
+[node name="Portal2" parent="." instance=ExtResource("4_ikp6o")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.1396, 30.462, -49)
+Scene = ExtResource("7_aqecs")
+
+[node name="Pedistal2" parent="." instance=ExtResource("6_io3yb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.2049, 25.632, -49)

@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var target = $"../Player"
+@onready var target = $"../../Player"
 @export var DamageNode: Node
 
 func _physics_process(delta):

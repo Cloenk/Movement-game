@@ -1,0 +1,164 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddkcgaxtxgyvs"]
+
+[ext_resource type="Material" uid="uid://d2gx13i48rxff" path="res://Assets/Materials/maps/Grass.tres" id="2_p0ct3"]
+[ext_resource type="Script" path="res://Scripts/Game/terrain.gd" id="3_ycv18"]
+[ext_resource type="Material" uid="uid://bv4yuiy7takgy" path="res://Assets/Materials/maps/brick.tres" id="4_3tjsj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4m6cg"]
+sky_top_color = Color(0.123257, 0.370341, 0.997086, 1)
+sky_horizon_color = Color(0.375775, 0.573691, 0.999264, 1)
+ground_bottom_color = Color(0.00225192, 0, 0.320922, 1)
+ground_horizon_color = Color(0.376471, 0.572549, 1, 1)
+sun_angle_max = 0.0
+
+[sub_resource type="Sky" id="Sky_birpf"]
+sky_material = SubResource("ProceduralSkyMaterial_4m6cg")
+
+[sub_resource type="Environment" id="Environment_517wc"]
+background_mode = 2
+sky = SubResource("Sky_birpf")
+ambient_light_source = 2
+ambient_light_color = Color(0.832341, 0.888803, 1, 1)
+ambient_light_energy = 2.0
+glow_bloom = 0.3
+fog_mode = 1
+fog_light_color = Color(0, 0, 0.47451, 1)
+fog_light_energy = 0.2
+fog_density = 1.0
+fog_depth_curve = 0.901252
+fog_depth_end = 10.0
+adjustment_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_fr8xj"]
+vertices = PackedVector3Array(-124.5, 0.304603, -55, -101.75, 0.304603, -54.5, -101, 0.304603, -58.75, -100.5, 0.304603, -59.25, -38.5, 0.304603, -85.75, -37.25, 0.304603, -86.25, -37.25, 0.304603, -124.5, -41, 0.304603, -75.5, -124.5, 0.304603, -124.5, -90, 0.304603, -57.25, -31.25, 0.304603, -84.75, -31, 0.304603, -124.5, -27, 0.304603, -83.75, 68, 0.304603, -75.75, 78, 0.304603, -80.25, 78, 0.304603, -124.5, -27, 0.304603, -82.25, 2, 0.304603, -5.75, 68, 0.304603, -74.25, -29.5, 0.304603, -73.25, -8.75, 0.304603, -5.75, 71.75, 0.304603, -65.75, 78.75, 0.304603, -80, 82.5, 0.304603, -70.25, 124.5, 0.304603, -70.25, 124.5, 0.304603, -124.5, -32, 38.8046, -79.25, -23, 37.0546, -76.75, -21, 35.8046, -85.5, -29.75, 37.5546, -88, -30.75, 0.304603, -74.5, -28.75, 0.304603, -82, -28.75, 0.304603, -82.75, -37, 0.304603, -84.5, -39.25, 0.304603, -76.5, 69.75, 0.304603, -74.75, 73, 0.304603, -67, 80.75, 0.304603, -70.5, 77.5, 0.304603, -78.25, -89.5, 0.304603, -56.75, -40.5, 0.304603, -75, -89.5, 0.304603, -55, -91.5, 0.304603, -46.25, -17, 0.304603, -12.5, -30, 0.304603, -72.75, -92, 0.304603, -46, -9.25, 0.304603, -5.25, 68.75, 35.8046, -60, 77.25, 37.5546, -63.25, 73.5, 38.8046, -71.75, 65.25, 37.0546, -68.25, 82.25, 0.304603, -69.25, 73.5, 0.304603, -65.25, 2.5, 0.304603, -5.5, 55.75, 0.304603, 42, 124.5, 0.304603, 44.25, 2.5, 0.304603, 5.25, 2, 0.304603, 5.5, 43.75, 0.304603, 42.5, 44, 0.304603, 42, 72, 0.304603, -65.25, 56, 0.304603, 44.25, -99.5, 0.304603, -57.75, -101.25, 0.304603, -50.5, -101.25, 0.304603, -49.25, -93, 0.304603, -47.5, -91, 0.304603, -55.75, -108.25, 34.8046, -48, -108.25, 34.8046, -47.25, -107.5, 34.8046, -47, -99.5, 36.3046, -45.25, -97.5, 37.0546, -54, -99, 36.8046, -54.75, -106.5, 35.5546, -56.25, -103, 0.304603, -49, -124.5, 0.304603, -49.25, -9.25, 0.304603, 5, -98.75, 0.304603, 43.25, -88.5, 0.304603, 45.25, -102.75, 0.304603, -48, -124.5, 0.304603, 46.75, -99.75, 0.304603, 47, -99.25, 0.304603, 43.75, -0.5, 43.0546, -4.75, -0.5, 43.0546, 4.5, 8.5, 41.3046, 4.5, 8.5, 41.3046, -4.75, -7.75, 0.304603, -4.5, -7.75, 0.304603, 4.25, 1, 0.304603, 4.25, 1, 0.304603, -4.5, -88, 0.304603, 45.75, -8.75, 0.304603, 5.5, -100.75, 0.304603, 54.5, -101.25, 0.304603, 53.25, -124.5, 0.304603, 53, -90.5, 0.304603, 56.5, -124.5, 0.304603, 124.5, 43.75, 0.304603, 53, -90, 0.304603, 56, 45.25, 0.304603, 124.5, 45.5, 0.304603, 53.25, 30.25, 39.5546, 43, 30.25, 39.5546, 52.25, 39, 43.0546, 52.25, 39, 43.0546, 43, 45.5, 0.304603, 43.25, 45.5, 0.304603, 52, 54.25, 0.554603, 52, 54.25, 0.554603, 43.25, 56, 0.304603, 51, 124.5, 0.304603, 51, -89.5, 0.304603, 47.25, -89.5, 0.304603, 46.5, -90.25, 0.304603, 46.25, -98, 0.304603, 44.75, -99.75, 0.304603, 52.5, -99.5, 0.304603, 53.25, -91.25, 0.304603, 55, -99.5, 37.5546, 46.75, -101.5, 37.0546, 55.25, -101.25, 36.8046, 55.75, -92.5, 37.0546, 57.5, -90.5, 37.8046, 49.25, -90.5, 37.8046, 48.5, 56, 0.304603, 53, 54.25, 0.304603, 53.25, 54.5, 0.304603, 124.5, 124.5, 0.304603, 124.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(3, 2, 0), PackedInt32Array(6, 5, 4), PackedInt32Array(4, 7, 6), PackedInt32Array(6, 7, 3), PackedInt32Array(6, 3, 0), PackedInt32Array(6, 0, 8), PackedInt32Array(9, 3, 7), PackedInt32Array(6, 11, 5), PackedInt32Array(5, 11, 10), PackedInt32Array(10, 11, 12), PackedInt32Array(12, 11, 13), PackedInt32Array(13, 11, 14), PackedInt32Array(14, 11, 15), PackedInt32Array(16, 12, 17), PackedInt32Array(17, 12, 18), PackedInt32Array(18, 12, 13), PackedInt32Array(20, 19, 17), PackedInt32Array(17, 19, 16), PackedInt32Array(18, 21, 17), PackedInt32Array(22, 14, 15), PackedInt32Array(23, 22, 24), PackedInt32Array(24, 22, 15), PackedInt32Array(24, 15, 25), PackedInt32Array(29, 28, 26), PackedInt32Array(26, 28, 27), PackedInt32Array(31, 30, 32), PackedInt32Array(32, 30, 33), PackedInt32Array(33, 30, 34), PackedInt32Array(38, 37, 35), PackedInt32Array(35, 37, 36), PackedInt32Array(9, 7, 39), PackedInt32Array(39, 7, 40), PackedInt32Array(41, 39, 40), PackedInt32Array(41, 40, 42), PackedInt32Array(42, 40, 44), PackedInt32Array(42, 44, 43), PackedInt32Array(42, 43, 45), PackedInt32Array(46, 43, 20), PackedInt32Array(20, 43, 44), PackedInt32Array(20, 44, 19), PackedInt32Array(50, 49, 47), PackedInt32Array(47, 49, 48), PackedInt32Array(51, 23, 24), PackedInt32Array(51, 24, 52), PackedInt32Array(52, 24, 53), PackedInt32Array(53, 24, 54), PackedInt32Array(54, 24, 55), PackedInt32Array(59, 58, 56), PackedInt32Array(56, 58, 57), PackedInt32Array(60, 53, 21), PackedInt32Array(21, 53, 17), PackedInt32Array(56, 53, 59), PackedInt32Array(59, 53, 54), PackedInt32Array(55, 61, 54), PackedInt32Array(53, 60, 52), PackedInt32Array(63, 62, 64), PackedInt32Array(64, 62, 65), PackedInt32Array(65, 62, 66), PackedInt32Array(69, 68, 67), PackedInt32Array(72, 71, 73), PackedInt32Array(73, 71, 67), PackedInt32Array(67, 71, 69), PackedInt32Array(69, 71, 70), PackedInt32Array(75, 0, 74), PackedInt32Array(74, 0, 1), PackedInt32Array(46, 76, 43), PackedInt32Array(43, 76, 45), PackedInt32Array(45, 76, 78), PackedInt32Array(45, 78, 77), PackedInt32Array(75, 74, 79), PackedInt32Array(82, 81, 80), PackedInt32Array(82, 80, 77), PackedInt32Array(77, 80, 45), PackedInt32Array(45, 80, 79), PackedInt32Array(79, 80, 75), PackedInt32Array(86, 85, 83), PackedInt32Array(83, 85, 84), PackedInt32Array(90, 89, 87), PackedInt32Array(87, 89, 88), PackedInt32Array(78, 76, 91), PackedInt32Array(91, 76, 92), PackedInt32Array(95, 94, 93), PackedInt32Array(93, 96, 95), PackedInt32Array(95, 96, 97), PackedInt32Array(58, 98, 57), PackedInt32Array(57, 98, 92), PackedInt32Array(99, 91, 92), PackedInt32Array(98, 101, 100), PackedInt32Array(96, 99, 97), PackedInt32Array(97, 99, 92), PackedInt32Array(97, 92, 98), PackedInt32Array(97, 98, 100), PackedInt32Array(105, 104, 102), PackedInt32Array(102, 104, 103), PackedInt32Array(109, 108, 106), PackedInt32Array(106, 108, 107), PackedInt32Array(61, 55, 110), PackedInt32Array(110, 55, 111), PackedInt32Array(114, 113, 112), PackedInt32Array(116, 115, 117), PackedInt32Array(117, 115, 114), PackedInt32Array(117, 114, 112), PackedInt32Array(117, 112, 118), PackedInt32Array(95, 80, 94), PackedInt32Array(94, 80, 81), PackedInt32Array(123, 122, 124), PackedInt32Array(124, 122, 121), PackedInt32Array(124, 121, 120), PackedInt32Array(124, 120, 119), PackedInt32Array(125, 110, 111), PackedInt32Array(125, 111, 126), PackedInt32Array(126, 111, 127), PackedInt32Array(127, 111, 128), PackedInt32Array(101, 126, 100), PackedInt32Array(100, 126, 127)]
+geometry_parsed_geometry_type = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_xe65p"]
+material = ExtResource("4_3tjsj")
+size = Vector3(10, 45, 10)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_n2y5x"]
+data = PackedVector3Array(-5, 22.5, 5, 5, 22.5, 5, -5, -22.5, 5, 5, 22.5, 5, 5, -22.5, 5, -5, -22.5, 5, 5, 22.5, -5, -5, 22.5, -5, 5, -22.5, -5, -5, 22.5, -5, -5, -22.5, -5, 5, -22.5, -5, 5, 22.5, 5, 5, 22.5, -5, 5, -22.5, 5, 5, 22.5, -5, 5, -22.5, -5, 5, -22.5, 5, -5, 22.5, -5, -5, 22.5, 5, -5, -22.5, -5, -5, 22.5, 5, -5, -22.5, 5, -5, -22.5, -5, 5, 22.5, 5, -5, 22.5, 5, 5, 22.5, -5, -5, 22.5, 5, -5, 22.5, -5, 5, 22.5, -5, -5, -22.5, 5, 5, -22.5, 5, -5, -22.5, -5, 5, -22.5, 5, 5, -22.5, -5, -5, -22.5, -5)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5jiwp"]
+material = ExtResource("2_p0ct3")
+size = Vector2(250, 250)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_uk48x"]
+points = PackedVector3Array(-125, 0, -125, -125, 0, 125, 125, 0, -125, 125, 0, 125)
+
+[node name="Terrain" type="Node3D" node_paths=PackedStringArray("playerSpawn")]
+script = ExtResource("3_ycv18")
+playerSpawn = NodePath("PlayerSpawn")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_517wc")
+
+[node name="WaveSpawns" type="Node3D" parent="."]
+
+[node name="Marker3D" type="Marker3D" parent="WaveSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 101.725, 0, 0)
+
+[node name="Marker3D2" type="Marker3D" parent="WaveSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 86.9397)
+
+[node name="Marker3D3" type="Marker3D" parent="WaveSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -100.86, 0, 0)
+
+[node name="Marker3D4" type="Marker3D" parent="WaveSpawns"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -101.957)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_fr8xj")
+
+[node name="Pillar" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00546265, -4.91778, -0.107841)
+collision_layer = 5
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Pillar"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+mesh = SubResource("BoxMesh_xe65p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Pillar"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+shape = SubResource("ConcavePolygonShape3D_n2y5x")
+
+[node name="Pillar2" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.854305, -0.519773, 0, 0.519773, 0.854305, 0, 0, 0, 1, 55.4641, -2.14301, 47.5316)
+collision_layer = 5
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Pillar2"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+mesh = SubResource("BoxMesh_xe65p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Pillar2"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+shape = SubResource("ConcavePolygonShape3D_n2y5x")
+
+[node name="Pillar3" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.973948, 0.0284808, -0.224975, 0, 0.992082, 0.125593, 0.22677, -0.122321, 0.966236, -31.7334, -11.089, -77.6107)
+collision_layer = 5
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Pillar3"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+mesh = SubResource("BoxMesh_xe65p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Pillar3"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+shape = SubResource("ConcavePolygonShape3D_n2y5x")
+
+[node name="Pillar4" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(-0.910525, 0.0519269, -0.41018, 0, 0.992082, 0.125593, 0.413454, 0.114356, -0.903315, 72.4097, -9.44018, -72.7834)
+collision_layer = 5
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Pillar4"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+mesh = SubResource("BoxMesh_xe65p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Pillar4"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+shape = SubResource("ConcavePolygonShape3D_n2y5x")
+
+[node name="Pillar5" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.953431, -0.21206, -0.214474, 0.201577, 0.976977, -0.0698815, 0.224355, 0.0233942, 0.974227, -89.9364, -9.44017, 50.1002)
+collision_layer = 5
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Pillar5"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+mesh = SubResource("BoxMesh_xe65p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Pillar5"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+shape = SubResource("ConcavePolygonShape3D_n2y5x")
+
+[node name="Pillar6" type="StaticBody3D" parent="NavigationRegion3D"]
+transform = Transform3D(0.910588, -0.358264, -0.2061, 0.346865, 0.933559, -0.0902924, 0.224755, 0.0107302, 0.974356, -89.8719, -9.44017, -52.2105)
+collision_layer = 5
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/Pillar6"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+mesh = SubResource("BoxMesh_xe65p")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="NavigationRegion3D/Pillar6"]
+transform = Transform3D(0.983863, 0.178922, 0, -0.178922, 0.983863, 0, 0, 0, 1, 0, 24.5083, 0)
+shape = SubResource("ConcavePolygonShape3D_n2y5x")
+
+[node name="ground" type="StaticBody3D" parent="NavigationRegion3D"]
+collision_layer = 5
+collision_mask = 5
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="NavigationRegion3D/ground"]
+mesh = SubResource("PlaneMesh_5jiwp")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/ground"]
+shape = SubResource("ConvexPolygonShape3D_uk48x")
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0, 1, -14.468)

@@ -12,7 +12,7 @@ func _process(delta):
 	linear_velocity = lerp(linear_velocity, Vector3.ZERO, (lerpspeed * delta))
 	for body in $Ball.get_overlapping_bodies():
 		if body.is_in_group("Enemy"):
-			explode(1, 150 + boost, 0)
+			explode(1 , 100 + boost + linear_velocity.length(), 0)
 		if body.is_in_group("Player") and grace == false:
 			explode(1, 150 + boost, 0)
 
