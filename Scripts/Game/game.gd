@@ -5,6 +5,7 @@ extends Node3D
 @onready var entities = $Entities
 @onready var enemies = $Enemies
 @onready var player = $Player
+@onready var shop_animations = $shop/ShopAnimations
 
 var HasWon = false
 var CanWin = false
@@ -31,6 +32,7 @@ func win():
 	next_round_timer.start()
 
 func nextRoom():
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player.canMove = true
 	player.transition.play("start")
 	room_spawner.spawnRoom()
@@ -42,4 +44,9 @@ func startShop():
 		n.queue_free()
 	room_spawner.deleteRoom()
 	player.resetCooldowns()
-	#$shop.show()
+	shop_animations.play("showShop")
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	#$shop.show() do with animation
+
+func _on_continue_pressed():
+	shop_animations.play("HideShop")

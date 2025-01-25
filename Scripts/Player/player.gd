@@ -64,7 +64,7 @@ func _ready():
 	defaultPos = $Head/Hand.position
 
 func _input(event : InputEvent): #Mouse look
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and canMove:
 		mouseMov = Vector3(-event.relative.x * MouseSens, -event.relative.y * MouseSens, 0)
 		mouse_input = event.relative
 		var vel := Vector3(event.relative.x, -event.relative.y, 0.0) / 1000.0
