@@ -35,10 +35,11 @@ func nextRoom():
 	player.transition.play("start")
 	room_spawner.spawnRoom()
 
-func _on_next_round_timer_timeout():
+func startShop():
 	player.canMove = false
 	for n in entities.get_children():
 		entities.remove_child(n)
 		n.queue_free()
 	room_spawner.deleteRoom()
 	player.resetCooldowns()
+	#$shop.show()
