@@ -24,6 +24,7 @@ config/icon="res://icon.svg"
 
 Console="*res://addons/console/console.gd"
 Global="*res://Scripts/global.gd"
+GameSignals="*res://Scripts/GameSignals.gd"
 
 [debug]
 

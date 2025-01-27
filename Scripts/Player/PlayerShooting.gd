@@ -165,13 +165,13 @@ func ShootBullet():
 	var bul = BulletScene.instantiate()
 	var sprx = randi_range(-stats.BullerSpread, stats.BullerSpread)
 	var spry = randi_range(stats.BullerSpread, -stats.BullerSpread)
+	get_parent().get_parent().entities.add_child(bul)
 	bul.damage = stats.AttackDMG
 	bul.global_position = shooting_start.global_position
 	bul.rotation.x = $"../Head".rotation.x
 	bul.rotation.y = $"..".rotation.y
 	bul.size = Vector3(stats.BulletSize, stats.BulletSize, stats.BulletSize)
 	bul.linear_velocity = shooting_start.global_transform.basis.z * -1 * stats.BulletSpeed + Vector3(sprx, spry, sprx)
-	get_parent().get_parent().entities.add_child(bul)
 
 func ShootBomb():
 	var Collider = $"../Head/ShootingRayCast".get_collider()

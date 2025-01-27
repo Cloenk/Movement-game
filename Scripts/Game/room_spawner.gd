@@ -30,11 +30,11 @@ func getRandomTerrain():
 func spawnWave():
 	var wave = WaveScene.instantiate()
 	var spawnPos = CurrentRoom.getRandomSpawnPoint()
+	game.entities.add_child(wave)
 	wave.difficulty = game.difficulty
 	wave.enemyAmount = game.enemyAmount
 	wave.gameNode = game
 	wave.global_position = spawnPos.global_position
-	game.entities.add_child(wave)
 	waves -= 1
 	spawnPos.queue_free()
 	if waves > 0:

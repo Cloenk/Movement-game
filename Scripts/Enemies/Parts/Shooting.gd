@@ -28,12 +28,12 @@ func _process(delta):
 
 func shoot():
 	var bul = BulletScene.instantiate()
+	host.get_parent().get_parent().entities.add_child(bul)
 	bul.global_position = BulletStartPosNode.global_position
 	bul.rotation.x = host.rotation.x
 	bul.rotation.y = host.rotation.y
 	bul.linear_velocity = BulletStartPosNode.global_transform.basis.z * -1 * BulletVelocity
 	bul.dmg = Damage
-	host.get_parent().get_parent().entities.add_child(bul)
 
 func _on_timer_timeout():
 	CanFire = true

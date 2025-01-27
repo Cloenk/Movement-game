@@ -17,4 +17,5 @@ func Damage(dmg):
 		Death()
 
 func Death():
+	GameSignals.enemyKilled.emit()
 	host.queue_free()

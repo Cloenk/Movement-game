@@ -20,15 +20,15 @@ func spawn():
 		var type = randi_range(1,2)
 		if type == 1:
 			var enemy = getRandomEnemy(commonGroundEnemies).instantiate()
-			enemy.global_position = getRandomSpawnPoint(bottem).global_position
 			gameNode.enemies.add_child(enemy)
+			enemy.global_position = getRandomSpawnPoint(bottem).global_position
 			enemyAmount -= 1
 			spawn_timer.start()
 			gameNode.CanWin = true
 		if type == 2:
 			var enemy = getRandomEnemy(commonFlyingEnemies).instantiate()
-			enemy.global_position = getRandomSpawnPoint(top).global_position
 			gameNode.enemies.add_child(enemy)
+			enemy.global_position = getRandomSpawnPoint(top).global_position
 			enemyAmount -= 1
 			spawn_timer.start()
 			gameNode.CanWin = true

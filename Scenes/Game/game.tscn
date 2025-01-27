@@ -158,6 +158,30 @@ libraries = {
 "": SubResource("AnimationLibrary_ltywo")
 }
 
+[node name="Kills gold" type="Label" parent="shop"]
+offset_left = 635.0
+offset_top = 369.0
+offset_right = 829.0
+offset_bottom = 433.0
+theme_override_font_sizes/font_size = 46
+text = "100"
+
+[node name="Time Gold" type="Label" parent="shop"]
+offset_left = 639.0
+offset_top = 440.0
+offset_right = 833.0
+offset_bottom = 504.0
+theme_override_font_sizes/font_size = 46
+text = "100"
+
+[node name="Total gold" type="Label" parent="shop"]
+offset_left = 638.0
+offset_top = 509.0
+offset_right = 832.0
+offset_bottom = 573.0
+theme_override_font_sizes/font_size = 46
+text = "100"
+
 [connection signal="timeout" from="RoomSpawner/WaveTimer" to="RoomSpawner" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="NextRoundTimer" to="." method="startShop"]
 [connection signal="pressed" from="shop/Continue" to="." method="_on_continue_pressed"]
