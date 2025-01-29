@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://ms40xqy15vmh"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://ms40xqy15vmh"]
 
+[ext_resource type="Texture2D" uid="uid://bpcvia0p8j7vc" path="res://Assets/Textures/items/finger.png" id="1_a27uc"]
 [ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_ibad5"]
 
 [resource]
 script = ExtResource("1_ibad5")
-name = "FastFingers"
+name = "Fast Finger"
+description = "This extra finger will increase your movement speed while firing"
+Icon = ExtResource("1_a27uc")
 Price = 100.0
 ID = 4

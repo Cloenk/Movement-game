@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://bg834npyosffa"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://bg834npyosffa"]
 
+[ext_resource type="Texture2D" uid="uid://b1rss67kgjlto" path="res://Assets/Textures/items/milk.png" id="1_1y5q7"]
 [ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_slel5"]
 
 [resource]
 script = ExtResource("1_slel5")
 name = "Milk"
+description = "This delightfull digestible decreases all incoming damage by 10%"
+Icon = ExtResource("1_1y5q7")
 Price = 100.0
 ID = 1

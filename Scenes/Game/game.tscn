@@ -173,22 +173,22 @@ position = Vector2(960, 540)
 texture = ExtResource("7_lynsb")
 
 [node name="ShopItem" parent="shop" instance=ExtResource("8_dytc8")]
-position = Vector2(250, 251)
+position = Vector2(250, 250)
 
 [node name="ShopItem2" parent="shop" instance=ExtResource("8_dytc8")]
 position = Vector2(540, 250)
 
 [node name="ShopItem3" parent="shop" instance=ExtResource("8_dytc8")]
-position = Vector2(841, 251)
+position = Vector2(840, 250)
 
 [node name="ShopItem4" parent="shop" instance=ExtResource("8_dytc8")]
-position = Vector2(841, 540)
+position = Vector2(840, 540)
 
 [node name="ShopItem5" parent="shop" instance=ExtResource("8_dytc8")]
-position = Vector2(541, 541)
+position = Vector2(540, 540)
 
 [node name="ShopItem6" parent="shop" instance=ExtResource("8_dytc8")]
-position = Vector2(250, 541)
+position = Vector2(250, 540)
 
 [node name="Continue" type="Button" parent="shop"]
 layout_mode = 0

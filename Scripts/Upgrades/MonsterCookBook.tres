@@ -1,9 +1,12 @@
-[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://dihn7ksnrvapi"]
+[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://dihn7ksnrvapi"]
 
 [ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_4o1t5"]
+[ext_resource type="Texture2D" uid="uid://t3puafujo3p1" path="res://Assets/Textures/items/book.png" id="1_xf4e4"]
 
 [resource]
 script = ExtResource("1_4o1t5")
 name = "Monster cookbook"
+description = "Filled with recipes of how to prepare and eat monsters, Heals 5 health every time you kill a monster"
+Icon = ExtResource("1_xf4e4")
 Price = 250.0
 ID = 6
