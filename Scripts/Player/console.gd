@@ -9,6 +9,13 @@ func _ready():
 	Console.add_command("set", Set, ["stat", "amount"], 2)
 	Console.add_command("reload", reload)
 	Console.add_command("summon", summon, ["enemy name"], 1)
+	Console.add_command("killall", killall)
+
+func killall():
+	var node = get_parent().get_parent().enemies
+	for n in node.get_children():
+		node.remove_child(n)
+		n.queue_free()
 
 func summon(enemy):
 	var scene

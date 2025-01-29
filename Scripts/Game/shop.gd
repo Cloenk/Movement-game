@@ -10,7 +10,7 @@ extends Control
 @onready var player = $"../Player"
 
 @export var availableUpgrades: Array[Upgrade]
-var gold = 1000
+var gold = 0
 
 func _process(delta):
 	goldCounter.text = str(gold)
