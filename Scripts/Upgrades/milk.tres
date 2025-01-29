@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_slel5")
 name = "Milk"
-description = "This delightfull digestible decreases all incoming damage by 10%"
+description = "This delightfull digestible decreases all incoming damage by 20%"
 Icon = ExtResource("1_1y5q7")
 Price = 100.0
 ID = 1
