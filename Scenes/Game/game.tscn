@@ -1,9 +1,25 @@
-[gd_scene load_steps=9 format=3 uid="uid://cm8k25tji5hlu"]
+[gd_scene load_steps=23 format=3 uid="uid://cm8k25tji5hlu"]
 
 [ext_resource type="PackedScene" uid="uid://dmwv25fu0o4fw" path="res://Scenes/Player/player.tscn" id="1_3gdom"]
 [ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_8hu15"]
 [ext_resource type="Script" path="res://Scripts/Game/room_spawner.gd" id="2_lv03j"]
+[ext_resource type="Script" path="res://Scripts/Game/shop.gd" id="4_5e2yp"]
 [ext_resource type="Texture2D" uid="uid://cndcyupj3losr" path="res://Assets/Textures/ui/shop.png" id="4_kfovl"]
+[ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="5_vh4di"]
+[ext_resource type="Resource" uid="uid://bmt1kaptwqay8" path="res://Scripts/Upgrades/CoinOfTheBloodGod.tres" id="6_1yk2h"]
+[ext_resource type="Texture2D" uid="uid://cp5sd5mkgutxp" path="res://Assets/Textures/ui/gold counting.png" id="6_ryco8"]
+[ext_resource type="Texture2D" uid="uid://c3w13w05x6voe" path="res://Assets/Textures/ui/ShopItemSlots.png" id="7_lynsb"]
+[ext_resource type="FontFile" uid="uid://brm134qxee58i" path="res://Assets/fonts/vcr_osd_mono/VCR_OSD_MONO_1.001.ttf" id="7_s0tn5"]
+[ext_resource type="Resource" uid="uid://ms40xqy15vmh" path="res://Scripts/Upgrades/FastFingers.tres" id="7_yo84s"]
+[ext_resource type="PackedScene" uid="uid://ybplp0ty3r6m" path="res://Scenes/Game/shop_item.tscn" id="8_dytc8"]
+[ext_resource type="Resource" uid="uid://bbx831bgr1m6r" path="res://Scripts/Upgrades/LastStand.tres" id="8_xcp2l"]
+[ext_resource type="Resource" uid="uid://bg834npyosffa" path="res://Scripts/Upgrades/milk.tres" id="9_5d8c3"]
+[ext_resource type="Resource" uid="uid://dihn7ksnrvapi" path="res://Scripts/Upgrades/MonsterCookBook.tres" id="10_7ib0m"]
+[ext_resource type="Resource" uid="uid://ju5ltn0ld185" path="res://Scripts/Upgrades/obsidian blade.tres" id="11_d3ceu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2khe0"]
+font = ExtResource("7_s0tn5")
+font_size = 71
 
 [sub_resource type="Animation" id="Animation_fqcl3"]
 resource_name = "HideShop"
@@ -109,6 +125,12 @@ _data = {
 "showShop": SubResource("Animation_vkppo")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_rum4a"]
+font = ExtResource("7_s0tn5")
+font_size = 150
+font_color = Color(0.2, 0.113725, 0.0784314, 1)
+outline_color = Color(0.2, 0.113725, 0.0784314, 1)
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_8hu15")
 
@@ -138,10 +160,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_5e2yp")
+availableUpgrades = Array[ExtResource("5_vh4di")]([ExtResource("6_1yk2h"), ExtResource("7_yo84s"), ExtResource("8_xcp2l"), ExtResource("9_5d8c3"), ExtResource("10_7ib0m"), ExtResource("11_d3ceu")])
 
 [node name="shop bg" type="Sprite2D" parent="shop"]
 position = Vector2(960, 540)
 texture = ExtResource("4_kfovl")
+
+[node name="ShopItems" type="Sprite2D" parent="shop"]
+position = Vector2(960, 540)
+texture = ExtResource("7_lynsb")
+
+[node name="ShopItem" parent="shop" instance=ExtResource("8_dytc8")]
+position = Vector2(250, 251)
+
+[node name="ShopItem2" parent="shop" instance=ExtResource("8_dytc8")]
+position = Vector2(540, 250)
+
+[node name="ShopItem3" parent="shop" instance=ExtResource("8_dytc8")]
+position = Vector2(841, 251)
+
+[node name="ShopItem4" parent="shop" instance=ExtResource("8_dytc8")]
+position = Vector2(841, 540)
+
+[node name="ShopItem5" parent="shop" instance=ExtResource("8_dytc8")]
+position = Vector2(541, 541)
+
+[node name="ShopItem6" parent="shop" instance=ExtResource("8_dytc8")]
+position = Vector2(250, 541)
 
 [node name="Continue" type="Button" parent="shop"]
 layout_mode = 0
@@ -153,35 +199,87 @@ focus_mode = 0
 theme_override_font_sizes/font_size = 66
 text = "continue"
 
+[node name="Gold" type="Label" parent="shop"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 1012.0
+offset_right = 167.0
+offset_bottom = 1075.0
+text = "1000"
+label_settings = SubResource("LabelSettings_2khe0")
+
 [node name="ShopAnimations" type="AnimationPlayer" parent="shop"]
 libraries = {
 "": SubResource("AnimationLibrary_ltywo")
 }
 
-[node name="Kills gold" type="Label" parent="shop"]
-offset_left = 635.0
-offset_top = 369.0
-offset_right = 829.0
-offset_bottom = 433.0
-theme_override_font_sizes/font_size = 46
-text = "100"
+[node name="GoldCounting" type="Control" parent="shop"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="Time Gold" type="Label" parent="shop"]
-offset_left = 639.0
-offset_top = 440.0
-offset_right = 833.0
-offset_bottom = 504.0
-theme_override_font_sizes/font_size = 46
-text = "100"
+[node name="Sprite" type="Sprite2D" parent="shop/GoldCounting"]
+position = Vector2(960, 540)
+texture = ExtResource("6_ryco8")
 
-[node name="Total gold" type="Label" parent="shop"]
-offset_left = 638.0
-offset_top = 509.0
-offset_right = 832.0
-offset_bottom = 573.0
+[node name="Kills gold" type="Label" parent="shop/GoldCounting"]
+layout_mode = 2
+anchor_left = -0.0359375
+anchor_top = -0.012963
+anchor_right = 0.000520833
+anchor_bottom = 0.05
+offset_left = 1501.0
+offset_top = 252.0
+offset_right = 1695.0
+offset_bottom = 316.0
+text = "100"
+label_settings = SubResource("LabelSettings_rum4a")
+metadata/_edit_use_anchors_ = true
+
+[node name="Time Gold" type="Label" parent="shop/GoldCounting"]
+layout_mode = 2
+anchor_left = -0.228646
+anchor_top = 0.189815
+anchor_right = -0.192188
+anchor_bottom = 0.252778
+offset_left = 1871.0
+offset_top = 164.875
+offset_right = 2065.0
+offset_bottom = 228.875
 theme_override_font_sizes/font_size = 46
 text = "100"
+label_settings = SubResource("LabelSettings_rum4a")
+metadata/_edit_use_anchors_ = true
+
+[node name="Total gold" type="Label" parent="shop/GoldCounting"]
+layout_mode = 2
+anchor_left = -0.228646
+anchor_top = 0.189815
+anchor_right = -0.192188
+anchor_bottom = 0.252778
+offset_left = 1871.0
+offset_top = 431.42
+offset_right = 2065.0
+offset_bottom = 495.42
+theme_override_font_sizes/font_size = 46
+text = "100"
+label_settings = SubResource("LabelSettings_rum4a")
+metadata/_edit_use_anchors_ = true
+
+[node name="OkayButton" type="Button" parent="shop/GoldCounting"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 130.0
+offset_top = 810.0
+offset_right = 540.0
+offset_bottom = 969.0
+focus_mode = 0
 
 [connection signal="timeout" from="RoomSpawner/WaveTimer" to="RoomSpawner" method="_on_wave_timer_timeout"]
 [connection signal="timeout" from="NextRoundTimer" to="." method="startShop"]
 [connection signal="pressed" from="shop/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="shop/GoldCounting/OkayButton" to="shop" method="_on_okay_button_pressed"]

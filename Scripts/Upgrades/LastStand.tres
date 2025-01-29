@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://bbx831bgr1m6r"]
+
+[ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_n77y2"]
+
+[resource]
+script = ExtResource("1_n77y2")
+name = "LastStand"
+Price = 500.0
+ID = 3

@@ -24,6 +24,7 @@ var CanSlash = true
 var CanDash = true
 var IsCharging = false
 var ChargeMeter = 0.0
+var IsSwordBroken = false
 
 var delta
 
@@ -107,7 +108,7 @@ func _process(delta):
 			bomb_animation.stop()
 			bomb_animation.play("Bomb")
 			ShootBomb()
-		if SelectedWeapon == 3 and CanSlash:
+		if SelectedWeapon == 3 and CanSlash and IsSwordBroken == false:
 			CanSlash = false
 			$SlashTimer.set_wait_time(stats.MeleeSpeed)
 			$SlashTimer.start()
@@ -120,7 +121,7 @@ func _process(delta):
 			CanBall = false
 			$BallTimer.set_wait_time(stats.BallCooldown)
 			$BallTimer.start()
-		if SelectedWeapon == 3 and CanDash:
+		if SelectedWeapon == 3 and CanDash and IsSwordBroken == false:
 			get_parent().SecondDash()
 			CanDash = false
 			$DashTimer.set_wait_time(stats.MeleeDashCooldown)
@@ -206,11 +207,11 @@ func ShootLaser():
 
 func ShootBall():
 	var bul = BallScene.instantiate()
+	get_parent().get_parent().entities.add_child(bul)
 	bul.global_position = shooting_start.global_position
 	bul.rotation.x = $"../Head".rotation.x
 	bul.rotation.y = $"..".rotation.y
 	bul.linear_velocity = shooting_start.global_transform.basis.z * -1 * 50 + get_parent().velocity * 2
-	get_parent().get_parent().entities.add_child(bul)
 
 func _on_shooting_timer_timeout():
 	CanShoot = true

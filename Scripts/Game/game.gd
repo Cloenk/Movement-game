@@ -1,11 +1,15 @@
 extends Node3D
 
+signal shopstart
+signal shopclose
+
 @onready var next_round_timer = $NextRoundTimer
 @onready var room_spawner = $RoomSpawner
 @onready var entities = $Entities
 @onready var enemies = $Enemies
 @onready var player = $Player
 @onready var shop_animations = $shop/ShopAnimations
+@onready var shop = $shop
 
 var Playing = true
 var CanWin = false
@@ -13,7 +17,6 @@ var difficulty = 0
 var enemyAmount = 2
 var waveAmount = 2
 
-var gold = 0
 var newgold = 0
 var time = 0
 
@@ -40,24 +43,20 @@ func win():
 	next_round_timer.start()
 
 func nextRoom():
+	shopclose.emit()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player.canMove = true
 	Playing = true
 	player.transition.play("start")
 	room_spawner.spawnRoom()
 	newgold = 0
+	GameSignals.newRound.emit()
 
 func startShop():
+	shopstart.emit()
 	time = roundi(time)
 	var timeAmount = (100 - time / (difficulty + enemyAmount + 1)) / 2
-	if timeAmount > 0:
-		$"shop/Time Gold".text = str("Gold from time: ",timeAmount)
-		gold += (newgold + timeAmount)
-	else:
-		$"shop/Time Gold".text = str("Gold from time: ",0, " Your slow lol")
-		gold += newgold
-	$"shop/Kills gold".text = str("Gold from kills: ",newgold)
-	$"shop/Total gold".text = str("Total gold: ",gold)
+	shop.countGold(newgold, timeAmount)
 	player.canMove = false
 	for n in entities.get_children():
 		entities.remove_child(n)

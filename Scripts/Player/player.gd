@@ -5,6 +5,7 @@ extends CharacterBody3D
 @onready var grapple_raycast = $Head/GrappleRaycast
 @onready var rope = $Head/Rope
 @onready var shooting = $Shooting
+@onready var upgrades = $Upgrades
 @onready var stats = $Stats
 @onready var cayote_timer = $CayoteTimer
 @onready var sound = $Sound
@@ -76,7 +77,16 @@ func _input(event : InputEvent): #Mouse look
 		head.rotation.x = clamp(head.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 
 func damage(dmg: float):
-		stats.HP -= dmg
+	var damage = dmg / 100 * stats.DamagePercent
+	var nextHp = stats.HP - damage
+	print(nextHp)
+	if nextHp <= 0:
+		if !upgrades.lastStand():
+			stats.HP -= damage
+	else:
+		stats.HP -= damage
+	if damage >= 50:
+		GameSignals.bigBlow.emit()
 
 func resetCooldowns():
 	shooting.CanShoot = true

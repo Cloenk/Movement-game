@@ -18,11 +18,11 @@ func _process(delta):
 
 func explode(size, dmg, part):
 	var exp = ExplosionScene.instantiate()
+	get_parent().get_parent().add_child(exp)
 	exp.global_position = global_position
 	exp.size = size
 	exp.Damage = dmg
 	exp.extraparticles = part
-	get_parent().get_parent().add_child(exp)
 	self.queue_free()
 
 func _on_grace_timer_timeout():

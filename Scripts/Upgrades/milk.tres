@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://bg834npyosffa"]
+
+[ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_slel5"]
+
+[resource]
+script = ExtResource("1_slel5")
+name = "Milk"
+Price = 100.0
+ID = 1

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://ju5ltn0ld185"]
+
+[ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_2pr7x"]
+
+[resource]
+script = ExtResource("1_2pr7x")
+name = "Obsidian blade"
+Price = 250.0
+ID = 2

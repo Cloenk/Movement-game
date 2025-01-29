@@ -204,7 +204,7 @@ hp = 90.0
 host = NodePath("..")
 NavAgent = NodePath("../NavigationAgent3D")
 speed = 25.0
-accel = 3.0
+accel = 5.0
 
 [node name="DamageArea" parent="." node_paths=PackedStringArray("host", "area") instance=ExtResource("4_f64r4")]
 host = NodePath("..")

@@ -8,9 +8,9 @@ extends Node
 
 func Damage(dmg):
 	var particle = ParticleScene.instantiate()
+	host.get_parent().get_parent().entities.add_child(particle)
 	particle.global_position = ParticlePos.global_position
 	particle.amount += dmg / 2
-	host.get_parent().get_parent().entities.add_child(particle)
 	dmg / 100 * damagePercent
 	hp -= dmg
 	if hp <= 0:

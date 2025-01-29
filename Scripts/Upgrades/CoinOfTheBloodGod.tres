@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://bmt1kaptwqay8"]
+
+[ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_o11gt"]
+
+[resource]
+script = ExtResource("1_o11gt")
+name = "Coin of the blood god"
+Price = 250.0
+ID = 5

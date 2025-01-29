@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dmwv25fu0o4fw"]
+[gd_scene load_steps=50 format=3 uid="uid://dmwv25fu0o4fw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_gy4rw"]
 [ext_resource type="Script" path="res://Scripts/Player/stats.gd" id="1_ivf41"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cy2sq2hpoi036" path="res://Scenes/Player/rope.tscn" id="3_dr7dj"]
 [ext_resource type="Shader" path="res://Assets/Shaders/VHS.gdshader" id="4_6y0ai"]
 [ext_resource type="Script" path="res://Scripts/Player/console.gd" id="4_auxvo"]
+[ext_resource type="Script" path="res://Scripts/Player/upgrades.gd" id="4_ts2it"]
 [ext_resource type="Script" path="res://Scenes/Player/sound.gd" id="5_dhxhp"]
 [ext_resource type="Texture2D" uid="uid://be7vhrp45g3ew" path="res://Assets/Textures/Weapons/HandIdle.png" id="5_hmdxp"]
 [ext_resource type="AudioStream" uid="uid://tt6yclcsf2w4" path="res://Assets/sound/step.wav" id="6_hkwj1"]
@@ -822,6 +823,9 @@ one_shot = true
 [node name="ReadyTimer" type="Timer" parent="Shooting"]
 wait_time = 0.1
 one_shot = true
+
+[node name="Upgrades" type="Node3D" parent="."]
+script = ExtResource("4_ts2it")
 
 [node name="Console" type="Node3D" parent="."]
 script = ExtResource("4_auxvo")

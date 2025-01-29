@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=2 format=3 uid="uid://ms40xqy15vmh"]
+
+[ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_ibad5"]
+
+[resource]
+script = ExtResource("1_ibad5")
+name = "FastFingers"
+Price = 100.0
+ID = 4

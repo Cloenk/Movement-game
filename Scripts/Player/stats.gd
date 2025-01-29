@@ -1,5 +1,7 @@
 extends Node3D
 @export var HP: float = 100
+@export var MaxHP: float = 100
+@export var DamagePercent: float = 100
 @export var speed: float = 15
 @export var DashVel: float = 75
 @export var AttackDMG: float = 10

@@ -1,0 +1,37 @@
+[gd_scene load_steps=4 format=3 uid="uid://ybplp0ty3r6m"]
+
+[ext_resource type="Script" path="res://Scripts/Game/shop_item.gd" id="1_omfwv"]
+[ext_resource type="FontFile" uid="uid://brm134qxee58i" path="res://Assets/fonts/vcr_osd_mono/VCR_OSD_MONO_1.001.ttf" id="2_oeglp"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ntdwq"]
+font = ExtResource("2_oeglp")
+font_size = 31
+
+[node name="ShopItem" type="Node2D"]
+script = ExtResource("1_omfwv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="BuyButton" type="Button" parent="."]
+offset_left = -112.0
+offset_top = -112.0
+offset_right = 123.0
+offset_bottom = 111.0
+focus_mode = 0
+text = "
+"
+metadata/_edit_use_anchors_ = true
+
+[node name="Price" type="Label" parent="."]
+offset_left = -111.0
+offset_top = 74.0
+offset_right = 123.0
+offset_bottom = 109.0
+text = "1000"
+label_settings = SubResource("LabelSettings_ntdwq")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="BuyButton" to="." method="_on_buy_button_pressed"]
