@@ -12,7 +12,7 @@ extends Node3D
 @onready var bomb_animation = $"../BombAnimation"
 @onready var melee_animation = $"../MeleeAnimation"
 @onready var hand = $"../Head/Hand"
-
+@onready var upgrades = $"../Upgrades"
 
 var SelectedWeapon = 1
 var IsReady = true
@@ -173,6 +173,7 @@ func ShootBullet():
 	bul.rotation.y = $"..".rotation.y
 	bul.size = Vector3(stats.BulletSize, stats.BulletSize, stats.BulletSize)
 	bul.linear_velocity = shooting_start.global_transform.basis.z * -1 * stats.BulletSpeed + Vector3(sprx, spry, sprx)
+	upgrades.shotsFired()
 
 func ShootBomb():
 	var Collider = $"../Head/ShootingRayCast".get_collider()

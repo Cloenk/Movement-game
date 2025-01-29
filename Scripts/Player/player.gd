@@ -79,7 +79,7 @@ func _input(event : InputEvent): #Mouse look
 func damage(dmg: float):
 	var damage = dmg / 100 * stats.DamagePercent
 	var nextHp = stats.HP - damage
-	print(nextHp)
+	upgrades.takeDamage(damage)
 	if nextHp <= 0:
 		if !upgrades.lastStand():
 			stats.HP -= damage

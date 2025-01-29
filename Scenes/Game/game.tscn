@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cm8k25tji5hlu"]
+[gd_scene load_steps=24 format=3 uid="uid://cm8k25tji5hlu"]
 
 [ext_resource type="PackedScene" uid="uid://dmwv25fu0o4fw" path="res://Scenes/Player/player.tscn" id="1_3gdom"]
 [ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_8hu15"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://bg834npyosffa" path="res://Scripts/Upgrades/milk.tres" id="9_5d8c3"]
 [ext_resource type="Resource" uid="uid://dihn7ksnrvapi" path="res://Scripts/Upgrades/MonsterCookBook.tres" id="10_7ib0m"]
 [ext_resource type="Resource" uid="uid://ju5ltn0ld185" path="res://Scripts/Upgrades/obsidian blade.tres" id="11_d3ceu"]
+[ext_resource type="Texture2D" uid="uid://jmwijlycyfh1" path="res://Assets/Textures/ui/BloodGold.png" id="17_ysd2a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2khe0"]
 font = ExtResource("7_s0tn5")
@@ -222,9 +223,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Sprite" type="Sprite2D" parent="shop/GoldCounting"]
+[node name="Background" type="Sprite2D" parent="shop/GoldCounting"]
 position = Vector2(960, 540)
 texture = ExtResource("6_ryco8")
+
+[node name="bloodgoldsprite" type="Sprite2D" parent="shop/GoldCounting"]
+position = Vector2(960, 540)
+texture = ExtResource("17_ysd2a")
 
 [node name="Kills gold" type="Label" parent="shop/GoldCounting"]
 layout_mode = 2
@@ -250,6 +255,22 @@ offset_left = 1871.0
 offset_top = 164.875
 offset_right = 2065.0
 offset_bottom = 228.875
+theme_override_font_sizes/font_size = 46
+text = "100"
+label_settings = SubResource("LabelSettings_rum4a")
+metadata/_edit_use_anchors_ = true
+
+[node name="Blood Gold" type="Label" parent="shop/GoldCounting"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.17169
+anchor_top = 0.140921
+anchor_right = -1.13523
+anchor_bottom = 0.203884
+offset_left = 3681.64
+offset_top = 354.806
+offset_right = 3875.64
+offset_bottom = 418.806
 theme_override_font_sizes/font_size = 46
 text = "100"
 label_settings = SubResource("LabelSettings_rum4a")

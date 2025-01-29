@@ -827,6 +827,9 @@ one_shot = true
 [node name="Upgrades" type="Node3D" parent="."]
 script = ExtResource("4_ts2it")
 
+[node name="FastFingersTimer" type="Timer" parent="Upgrades"]
+one_shot = true
+
 [node name="Console" type="Node3D" parent="."]
 script = ExtResource("4_auxvo")
 
@@ -1042,5 +1045,6 @@ one_shot = true
 [connection signal="timeout" from="Shooting/SlashTimer" to="Shooting" method="_on_slash_timer_timeout"]
 [connection signal="timeout" from="Shooting/DashTimer" to="Shooting" method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="Shooting/ReadyTimer" to="Shooting" method="_on_ready_timer_timeout"]
+[connection signal="timeout" from="Upgrades/FastFingersTimer" to="Upgrades" method="_on_fast_fingers_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="IsDashingTimer" to="." method="_on_is_dashing_timer_timeout"]

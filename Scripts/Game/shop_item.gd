@@ -23,7 +23,7 @@ func stopShop():
 		shop.availableUpgrades.append(upgrade)
 	bought = false
 	upgrade == null
-	price.text = "oopsie"
+	price.text = "Out of stock"
 
 func _on_buy_button_pressed():
 	if shop.gold >= upgrade.Price and bought == false:
