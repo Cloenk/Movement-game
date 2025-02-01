@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://dmwv25fu0o4fw"]
+[gd_scene load_steps=53 format=3 uid="uid://dmwv25fu0o4fw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_gy4rw"]
 [ext_resource type="Script" path="res://Scripts/Player/stats.gd" id="1_ivf41"]
@@ -7,6 +7,7 @@
 [ext_resource type="Shader" path="res://Assets/Shaders/VHS.gdshader" id="4_6y0ai"]
 [ext_resource type="Script" path="res://Scripts/Player/console.gd" id="4_auxvo"]
 [ext_resource type="Script" path="res://Scripts/Player/upgrades.gd" id="4_ts2it"]
+[ext_resource type="Texture2D" uid="uid://bam7afkhlefbv" path="res://Assets/Textures/ui/Frame.png" id="5_cndrg"]
 [ext_resource type="Script" path="res://Scenes/Player/sound.gd" id="5_dhxhp"]
 [ext_resource type="Texture2D" uid="uid://be7vhrp45g3ew" path="res://Assets/Textures/Weapons/HandIdle.png" id="5_hmdxp"]
 [ext_resource type="AudioStream" uid="uid://tt6yclcsf2w4" path="res://Assets/sound/step.wav" id="6_hkwj1"]
@@ -24,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://e0g5vof6ebxs" path="res://Assets/sound/Wind.mp3" id="11_6jj7m"]
 [ext_resource type="Texture2D" uid="uid://d0ef1mw2k5b4u" path="res://Assets/Textures/Weapons/HandCharge.png" id="12_7sbbn"]
 [ext_resource type="Texture2D" uid="uid://gr1lup0vgjlt" path="res://Assets/Textures/Weapons/BombCharged4.png" id="12_v1dsi"]
+[ext_resource type="FontFile" uid="uid://brm134qxee58i" path="res://Assets/fonts/vcr_osd_mono/VCR_OSD_MONO_1.001.ttf" id="25_my2a0"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2nbw2"]
 
@@ -784,6 +786,12 @@ shader_parameter/use_lens_distortion = true
 shader_parameter/overlay_color = Color(1, 1, 1, 10)
 shader_parameter/lens_distortion_strength = 0.0
 
+[sub_resource type="LabelSettings" id="LabelSettings_mvwv8"]
+font = ExtResource("25_my2a0")
+font_size = 60
+outline_size = 25
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 12
 collision_mask = 12
@@ -975,6 +983,10 @@ libraries = {
 "": SubResource("AnimationLibrary_vuc15")
 }
 
+[node name="CayoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
 [node name="UI" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
@@ -1034,9 +1046,88 @@ text = "100"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="CayoteTimer" type="Timer" parent="."]
-wait_time = 0.15
-one_shot = true
+[node name="UpgradesMenu" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Frame" type="Sprite2D" parent="UI/UpgradesMenu"]
+position = Vector2(960, 540)
+texture = ExtResource("5_cndrg")
+
+[node name="Title" type="Label" parent="UI/UpgradesMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -158.0
+offset_top = 52.0
+offset_right = 158.0
+offset_bottom = 105.0
+grow_horizontal = 2
+text = "Inventory"
+label_settings = SubResource("LabelSettings_mvwv8")
+horizontal_alignment = 1
+
+[node name="markers" type="Node2D" parent="UI/UpgradesMenu"]
+
+[node name="Marker2D" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(204.795, 241)
+
+[node name="Marker2D2" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(504.795, 241)
+
+[node name="Marker2D3" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(804.795, 241)
+
+[node name="Marker2D4" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1104.8, 241)
+
+[node name="Marker2D5" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1404.8, 241)
+
+[node name="Marker2D6" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1704.8, 241)
+
+[node name="Marker2D7" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(204.795, 541)
+
+[node name="Marker2D8" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(504.795, 541)
+
+[node name="Marker2D9" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(804.795, 541)
+
+[node name="Marker2D10" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1104.8, 541)
+
+[node name="Marker2D11" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1404.8, 541)
+
+[node name="Marker2D12" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1704.8, 541)
+
+[node name="Marker2D13" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(204.795, 841)
+
+[node name="Marker2D14" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(504.795, 841)
+
+[node name="Marker2D15" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(804.795, 841)
+
+[node name="Marker2D16" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1104.8, 841)
+
+[node name="Marker2D17" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1404.8, 841)
+
+[node name="Marker2D18" type="Marker2D" parent="UI/UpgradesMenu/markers"]
+position = Vector2(1704.8, 841)
 
 [connection signal="timeout" from="Shooting/ShootingTimer" to="Shooting" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Shooting/chargeTimer" to="Shooting" method="_on_charge_timer_timeout"]

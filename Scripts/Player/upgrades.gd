@@ -1,11 +1,16 @@
 extends Node3D
 
+@onready var ItemShowerScene: PackedScene = preload("res://Scenes/Player/item_shower.tscn")
+
 @onready var stats = $"../Stats"
 @onready var shop = $shop
 @onready var player = $".."
 @onready var fast_fingers_timer = $FastFingersTimer
+@onready var upgrades_menu = $"../UI/UpgradesMenu"
+@onready var markers = $"../UI/UpgradesMenu/markers"
 
 var Upgrades: Array[int] = []
+var UpgradesAmount = -1
 var canLastStand = true
 var bloodMoney = 0
 
@@ -13,7 +18,17 @@ func _ready():
 	GameSignals.newRound.connect(nextRound)
 	GameSignals.enemyKilled.connect(enemyKilled)
 
+func _input(event):
+	if event.is_action_pressed("open inventory"):
+		if upgrades_menu.is_visible():
+			upgrades_menu.hide()
+			#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			upgrades_menu.show()
+			#Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
 func AcquireItem(upgrade):
+	UpgradesAmount += 1
 	match upgrade.ID:
 		1:
 			stats.DamagePercent -= 20
@@ -30,6 +45,13 @@ func AcquireItem(upgrade):
 			Upgrades.append(5)
 		6:
 			Upgrades.append(6)
+	addItemToMenu(upgrade)
+
+func addItemToMenu(upgrade):
+	var itemShower = ItemShowerScene.instantiate()
+	itemShower.upgrade = upgrade
+	upgrades_menu.add_child(itemShower)
+	itemShower.global_position = markers.get_child(UpgradesAmount).global_position
 
 func takeDamage(dmg):
 	if Upgrades.has(5):
