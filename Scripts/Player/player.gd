@@ -77,16 +77,27 @@ func _input(event : InputEvent): #Mouse look
 		head.rotation.x = clamp(head.rotation.x,deg_to_rad(-89),deg_to_rad(89))
 
 func damage(dmg: float):
-	var damage = dmg / 100 * stats.DamagePercent
-	var nextHp = stats.HP - damage
-	upgrades.takeDamage(damage)
-	if nextHp <= 0:
-		if !upgrades.lastStand():
+	if GameSignals.isDead == false:
+		var damage = dmg / 100 * stats.DamagePercent
+		var nextHp = stats.HP - damage
+		upgrades.takeDamage(damage)
+		if nextHp <= 0:
+			if !upgrades.lastStand():
+				stats.HP -= damage
+		else:
 			stats.HP -= damage
-	else:
-		stats.HP -= damage
-	if damage >= 50:
-		GameSignals.bigBlow.emit()
+		if damage >= 50:
+			GameSignals.bigBlow.emit()
+		if stats.HP <= 0:
+			stats.HP = 0
+			if GameSignals.isDead == false:
+				death()
+
+func death():
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	GameSignals.isDead = true
+	canMove = false
+	transition.play("die")
 
 func resetCooldowns():
 	shooting.CanShoot = true
@@ -293,11 +304,6 @@ func _on_dash_timer_timeout():
 func _on_is_dashing_timer_timeout():
 	IsDashing = false
 
-#func weaponMove(delta):
-	#var mouseMovLength = mouseMov.length()
-	#if (mouseMovLength > swayThresh or mouseMovLength < -swayThresh):
-		#$Head/Hand.rotation = $Head/Hand.rotation.lerp(mouseMov.normalized() * swayAmount + defaultRot, swaySpeed * delta)
-		#$Head/Hand.position = $Head/Hand.position.lerp(mouseMov * swayAmount + defaultPos, swaySpeed * delta)
-	#else:
-		#$Head/Hand.rotation = $Head/Hand.rotation.lerp(defaultRot, swaySpeed * delta)
-		#$Head/Hand.position = $Head/Hand.position.lerp(defaultPos, swaySpeed * delta)
+func _on_return_button_pressed():
+	GameSignals.isDead = false
+	get_tree().change_scene_to_file("res://Scenes/Hub/hub.tscn")

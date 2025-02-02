@@ -3,12 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://dfxp8aa4u5bu1" path="res://Assets/Textures/items/Coin.png" id="1_5m3qe"]
 [ext_resource type="Script" path="res://Scripts/Player/item_shower.gd" id="1_rhnrj"]
 [ext_resource type="FontFile" uid="uid://brm134qxee58i" path="res://Assets/fonts/vcr_osd_mono/VCR_OSD_MONO_1.001.ttf" id="3_lfn04"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_yab65"]
-font = ExtResource("3_lfn04")
-font_size = 31
-outline_size = 13
-outline_color = Color(0, 0, 0, 1)
+[ext_resource type="LabelSettings" uid="uid://dk55ffgmre4cp" path="res://Assets/fonts/text.tres" id="3_pxy1y"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_4bcky"]
 font = ExtResource("3_lfn04")
@@ -26,7 +21,7 @@ offset_top = -101.0
 offset_right = 116.0
 offset_bottom = -45.0
 text = "name"
-label_settings = SubResource("LabelSettings_yab65")
+label_settings = ExtResource("3_pxy1y")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3

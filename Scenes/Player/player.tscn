@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=3 uid="uid://dmwv25fu0o4fw"]
+[gd_scene load_steps=54 format=3 uid="uid://dmwv25fu0o4fw"]
 
 [ext_resource type="Script" path="res://Scripts/Player/player.gd" id="1_gy4rw"]
 [ext_resource type="Script" path="res://Scripts/Player/stats.gd" id="1_ivf41"]
@@ -634,6 +634,117 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/deathMenu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/deathMenu:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_5v4hk"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UI/ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.054902, 0.054902, 0.054902, 0), Color(0.280248, 0.0184032, 0.0811474, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UI/Pixilation:material:shader_parameter/grainIntensity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.04, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("UI/Crosshair:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("UI/DashIcon:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("UI/HP:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.333333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("UI/deathMenu:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("UI/deathMenu:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.566667, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_0pupd"]
 resource_name = "start"
@@ -768,6 +879,7 @@ tracks/4/keys = {
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vuc15"]
 _data = {
 "RESET": SubResource("Animation_mdy2f"),
+"die": SubResource("Animation_5v4hk"),
 "start": SubResource("Animation_0pupd"),
 "stop": SubResource("Animation_p58ym")
 }
@@ -928,6 +1040,7 @@ texture = ExtResource("7_lxq80")
 
 [node name="ChargeFlash" type="Sprite3D" parent="Head/Hand"]
 transform = Transform3D(25, 0, 0, 0, 25, 0, 0, 0, 25, 1.06865, -0.697811, -0.694946)
+visible = false
 texture_filter = 0
 texture = ExtResource("12_v1dsi")
 
@@ -1129,6 +1242,45 @@ position = Vector2(1404.8, 841)
 [node name="Marker2D18" type="Marker2D" parent="UI/UpgradesMenu/markers"]
 position = Vector2(1704.8, 841)
 
+[node name="deathMenu" type="Control" parent="UI"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/deathMenu"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -36.0
+offset_right = 36.0
+offset_bottom = 23.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("25_my2a0")
+theme_override_font_sizes/font_size = 116
+text = "You died!"
+
+[node name="return" type="Button" parent="UI/deathMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -56.5
+offset_top = -15.5
+offset_right = 56.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 56
+text = "return to hub"
+
 [connection signal="timeout" from="Shooting/ShootingTimer" to="Shooting" method="_on_shooting_timer_timeout"]
 [connection signal="timeout" from="Shooting/chargeTimer" to="Shooting" method="_on_charge_timer_timeout"]
 [connection signal="timeout" from="Shooting/BombTimer" to="Shooting" method="_on_bomb_timer_timeout"]
@@ -1139,3 +1291,4 @@ position = Vector2(1704.8, 841)
 [connection signal="timeout" from="Upgrades/FastFingersTimer" to="Upgrades" method="_on_fast_fingers_timer_timeout"]
 [connection signal="timeout" from="DashTimer" to="." method="_on_dash_timer_timeout"]
 [connection signal="timeout" from="IsDashingTimer" to="." method="_on_is_dashing_timer_timeout"]
+[connection signal="pressed" from="UI/deathMenu/return" to="." method="_on_return_button_pressed"]

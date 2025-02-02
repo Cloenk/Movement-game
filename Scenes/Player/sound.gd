@@ -16,34 +16,34 @@ var DoSlashSound = false
 var DoWindSound = false
 
 func _process(delta):
-	if DoWalkingSounds == true:
+	if DoWalkingSounds == true and GameSignals.isDead == false:
 		if walking.playing == false:
 			walking.pitch_scale = randf_range(0.8, 1.2)
 			walking.play()
 	
-	if DoJumpSounds == true:
+	if DoJumpSounds == true and GameSignals.isDead == false:
 		jump.pitch_scale = randf_range(0.8, 1.1)
 		jump.play()
 		DoJumpSounds = false
 	
 	if player.velocity.y <= -10:
 		DoLandSound = true
-	if DoLandSound == true and player.IsGrounded:
+	if DoLandSound == true and player.IsGrounded and GameSignals.isDead == false:
 		DoLandSound = false
 		land.pitch_scale = randf_range(0.8, 1.1)
 		land.play()
 	
-	if DoDashSound == true:
+	if DoDashSound == true and GameSignals.isDead == false:
 		dash.pitch_scale = randf_range(0.8, 1.1)
 		dash.play()
 		DoDashSound = false
 	
-	if DoSlashSound == true:
+	if DoSlashSound == true and GameSignals.isDead == false:
 		slash.pitch_scale = randf_range(0.8, 1.1)
 		slash.play()
 		DoSlashSound = false
 	
-	if player.velocity.y < -15:
+	if player.velocity.y < -15 and GameSignals.isDead == false:
 		wind.set_volume_db(-75 + -player.velocity.y)
 		if !wind.is_playing():
 			wind.play()

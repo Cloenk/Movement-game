@@ -26,14 +26,11 @@ var IsCharging = false
 var ChargeMeter = 0.0
 var IsSwordBroken = false
 
-var delta
-
 func _ready():
 	hand.position = Vector3(0.565,-0.135,-0.776)
 	hand.texture = load("res://Assets/Textures/Weapons/HandIdle.png")
 
 func _process(delta):
-	self.delta = delta
 	if $"../Head/ShootingRayCast".is_colliding():
 		$"../Head/ShootingStart".look_at($"../Head/ShootingRayCast".get_collision_point())
 	else:
@@ -93,7 +90,7 @@ func _process(delta):
 		get_parent().defaultPos = Vector3(0.38,-0.245,-0.776)
 		hand.scale = Vector3(0.14,0.14,0.14)
 	
-	if Input.is_action_pressed("Shoot") and IsReady and IsCharging == false:
+	if Input.is_action_pressed("Shoot") and IsReady and IsCharging == false and GameSignals.isDead == false:
 		if SelectedWeapon == 1 and CanShoot:
 			CanShoot = false
 			$ShootingTimer.set_wait_time(stats.AttackSpeed)
@@ -108,27 +105,27 @@ func _process(delta):
 			bomb_animation.stop()
 			bomb_animation.play("Bomb")
 			ShootBomb()
-		if SelectedWeapon == 3 and CanSlash and IsSwordBroken == false:
+		if SelectedWeapon == 3 and CanSlash and IsSwordBroken == false and GameSignals.isDead == false:
 			CanSlash = false
 			$SlashTimer.set_wait_time(stats.MeleeSpeed)
 			$SlashTimer.start()
 			melee_animation.stop()
 			melee_animation.play("Slash")
 	
-	if Input.is_action_pressed("AltFire") and IsReady and IsCharging == false:
+	if Input.is_action_pressed("AltFire") and IsReady and IsCharging == false and GameSignals.isDead == false:
 		if SelectedWeapon == 2 and CanBall:
 			ShootBall()
 			CanBall = false
 			$BallTimer.set_wait_time(stats.BallCooldown)
 			$BallTimer.start()
-		if SelectedWeapon == 3 and CanDash and IsSwordBroken == false:
+		if SelectedWeapon == 3 and CanDash and IsSwordBroken == false and GameSignals.isDead == false:
 			get_parent().SecondDash()
 			CanDash = false
 			$DashTimer.set_wait_time(stats.MeleeDashCooldown)
 			$DashTimer.start()
 
 func _physics_process(delta):
-	if Input.is_action_pressed("AltFire"):
+	if Input.is_action_pressed("AltFire") and GameSignals.isDead == false:
 		if SelectedWeapon == 1 and CanCharge:
 			IsCharging = true
 	else:
@@ -148,7 +145,7 @@ func _physics_process(delta):
 	else:
 		$"../Head/Hand/ChargeFlash".hide()
 
-	if Input.is_action_just_released("AltFire"):
+	if Input.is_action_just_released("AltFire") and GameSignals.isDead == false:
 		if SelectedWeapon == 1:
 			if ChargeMeter >= 2.5:
 				CanCharge = false
