@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cm8k25tji5hlu"]
+[gd_scene load_steps=25 format=3 uid="uid://cm8k25tji5hlu"]
 
 [ext_resource type="PackedScene" uid="uid://dmwv25fu0o4fw" path="res://Scenes/Player/player.tscn" id="1_3gdom"]
 [ext_resource type="Script" path="res://Scripts/Game/game.gd" id="1_8hu15"]
@@ -16,6 +16,7 @@
 [ext_resource type="Resource" uid="uid://bg834npyosffa" path="res://Scripts/Upgrades/milk.tres" id="9_5d8c3"]
 [ext_resource type="Resource" uid="uid://dihn7ksnrvapi" path="res://Scripts/Upgrades/MonsterCookBook.tres" id="10_7ib0m"]
 [ext_resource type="Resource" uid="uid://ju5ltn0ld185" path="res://Scripts/Upgrades/obsidian blade.tres" id="11_d3ceu"]
+[ext_resource type="Resource" uid="uid://duiewm5c5h46r" path="res://Scripts/Upgrades/heliumPil.tres" id="12_s1um3"]
 [ext_resource type="Texture2D" uid="uid://jmwijlycyfh1" path="res://Assets/Textures/ui/BloodGold.png" id="17_ysd2a"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2khe0"]
@@ -162,7 +163,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_5e2yp")
-availableUpgrades = Array[ExtResource("5_vh4di")]([ExtResource("6_1yk2h"), ExtResource("7_yo84s"), ExtResource("8_xcp2l"), ExtResource("9_5d8c3"), ExtResource("10_7ib0m"), ExtResource("11_d3ceu")])
+availableUpgrades = Array[ExtResource("5_vh4di")]([ExtResource("6_1yk2h"), ExtResource("7_yo84s"), ExtResource("8_xcp2l"), ExtResource("9_5d8c3"), ExtResource("10_7ib0m"), ExtResource("11_d3ceu"), ExtResource("12_s1um3")])
 
 [node name="shop bg" type="Sprite2D" parent="shop"]
 position = Vector2(960, 540)

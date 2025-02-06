@@ -45,6 +45,12 @@ func AcquireItem(upgrade):
 			Upgrades.append(5)
 		6:
 			Upgrades.append(6)
+		7:
+			Upgrades.append(7)
+			stats.MaxHP -= 10
+			stats.gravity -= 7
+			if stats.HP > stats.MaxHP:
+				stats.HP = stats.MaxHP
 	addItemToMenu(upgrade)
 
 func addItemToMenu(upgrade):

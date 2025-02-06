@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Upgrade" load_steps=3 format=3 uid="uid://duiewm5c5h46r"]
+
+[ext_resource type="Texture2D" uid="uid://cuqx55b6o5xmj" path="res://Assets/Textures/items/Pill.png" id="1_gjjk8"]
+[ext_resource type="Script" path="res://Scripts/Upgrades/Upgrade.gd" id="1_u44w1"]
+
+[resource]
+script = ExtResource("1_u44w1")
+name = "Helium pill"
+description = "This silly little pill removes 10 max hp but it decreases your gravity"
+Icon = ExtResource("1_gjjk8")
+Price = 100.0
+ID = 7

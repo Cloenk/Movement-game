@@ -28,7 +28,6 @@ var direction = Vector3.ZERO
 var canMove = true
 var JumpVelocity = 14
 var MouseSens = 0.3
-var Gravity = 15
 var IsGrounded = true
 var CurrentSpeed
 var PlayerSpeed
@@ -225,7 +224,7 @@ func _physics_process(delta):
 		dash()
 	
 	if IsGrounded == false and IsGrappling == false: #falling
-		JumpingVelocity.y -= Gravity * delta
+		JumpingVelocity.y -= stats.gravity * delta
 		GrappleLerpSpeed = 0.03
 	else:
 		GrappleLerpSpeed = 0.1
